@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+    <HEAD>
+        <script>
+        /* 중첩조건문 - 기본형
+        if(bool표현식){ //외부 if
+
+            if(bool표현식){ //중첩if_1
+                실행문
+            } else{         //중첩else_1
+                실행문
+            }
+
+        } else { //외부 else
+            if(bool표현식){ //중첩if_2
+                실행문
+            } else{         //중첩else_2
+                실행문
+            }
+        
+            //중첩 조건문은 여러번 중첩해도 상관없다.
+
+        }
+        */        
+
+        //중첩조건문 예) 코드3-4 중첩조건문
+
+        var date = new Date();
+        var hour = date.getHours();
+
+        //중첩조건문 시작
+        if(hour <11){ //외부if
+            alert("아침을 먹을 시간입니다");
+        } 
+        else{
+            if(hour <15){ //중첩if
+                alert("점심 먹을 시간입니다");
+            } 
+            else{         //중첩else
+                alert("저녁 먹을 시간입니다.");
+            }
+        }
+
+    </script>
+            
+    </HEAD>
+    <BODY>
+        코드3-4 중첩조건문 예제
+    </BODY>
+</HTML>
