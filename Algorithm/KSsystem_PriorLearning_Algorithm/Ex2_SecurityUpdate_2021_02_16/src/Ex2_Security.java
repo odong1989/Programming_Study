@@ -26,7 +26,7 @@ public class Ex2_Security {
 
         try {
             //Step2. 데이터 파일 로드(input.txt)
-        	File file = new File("C:\\sourceTree\\Programming_Study\\Algorithm\\KSsystem_PriorLearning_Algorithm\\Ex2_Security\\bin\\input.txt"); // 대상 파일
+        	File file = new File("C:\\KS_system\\Ex2_Security_2021_02_15\\bin\\input.txt"); // 대상 파일
         						  
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -97,7 +97,7 @@ public class Ex2_Security {
 		
 		
         //step5. output.txt파일로 결과출력
-    	File file = new File("C:\\sourceTree\\Programming_Study\\Algorithm\\KSsystem_PriorLearning_Algorithm\\Ex2_Security\\bin\\output.txt"); // 대상 파일
+    	File file = new File("C:\\KS_system\\output.txt"); // 대상 파일
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         	int temp=0;
