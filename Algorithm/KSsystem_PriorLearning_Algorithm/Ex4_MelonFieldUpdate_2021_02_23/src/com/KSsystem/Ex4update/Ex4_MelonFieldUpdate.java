@@ -7,13 +7,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-
-/*ccw 알고리즘 참고 웹사이트
-CCW(CounterClockWise) 알고리즘 - https://code0xff.tistory.com/40
-CCW와 CCW를 이용한 선분 교차 판별 - https://jason9319.tistory.com/358
-#백준_11758 CCW - Java 자바 - https://ukyonge.tistory.com/184
-*/
-
+import javax.swing.*;
+import java.awt.Graphics;
 
 public class Ex4_MelonFieldUpdate {
 
@@ -37,63 +32,177 @@ public class Ex4_MelonFieldUpdate {
 	        	}
     		    cell_x++;
     		    cell_y=0;
-	        }    
+	        }
+	        bufferedReader.close();
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        System.exit(0); //잘못된 output값 출력않도록 종료처리. 
 	    }
         	
-       	/*
-       	//Step4. 가로최대값, 세로최대값 찾기 및 변수에저장 실시.
+       	//절대좌표로 변경.(이를 통해 및 변동되는 거리의 길이파악)
+		int drawPoint[][] = new int[8][5]; // 현지점(x1,y1), 그릴목표점(x2,y2), 방위(초기데이터의 동서남북)
+		int lengthXY[][] = new int[8][2];  // 변동되는 거리의 길이
+
+		for(int i=0;i < fieldData.length-1;i++){
+			drawPoint[i][4]=fieldData[i+1][0];
+			if(i != 0) {
+           		drawPoint[i][0]=drawPoint[i-1][2]; //x1
+           		drawPoint[i][1]=drawPoint[i-1][3]; //y1  			
+       		}
+       		int direction = fieldData[i+1][0];
+       		int tempOflength = fieldData[i+1][1];
+       		switch(direction) { //앞으로그릴 x2,y2 좌표값을 계산 및 설정.
+	       		case 1 : //동쪽
+	           		if(i != 0) {
+	           			drawPoint[i][2]= drawPoint[i][0]+tempOflength; //x2 
+	           			drawPoint[i][3]= drawPoint[i][1]; //y2
+	           		}
+	           		else if(i == 0) {
+	           			drawPoint[i][2]= tempOflength; //동쪽은 +방위처리
+	       				drawPoint[i][3]= 0; //y2=0
+	           		} 
+	       			break;
+	       			
+	       		case 2 : //서쪽
+	           		if(i != 0) {
+	           			drawPoint[i][2]= drawPoint[i][0]-tempOflength; //x2
+	       				drawPoint[i][3]= drawPoint[i][1]; //y2
+	           		}
+	           		else if(i == 0) {
+	           			drawPoint[i][2]= -tempOflength; //서쪽은 -방위처리
+	       				drawPoint[i][3]= 0; //y2=0
+	           		} 
+	           		break;
+	           		
+	       		case 3 : //남쪽
+	           		if(i != 0) {
+	           			drawPoint[i][2]= drawPoint[i][0]; //x2
+	       				drawPoint[i][3]= drawPoint[i][1]-tempOflength; //y2
+	           		}
+	           		else if(i == 0) {
+	           			drawPoint[i][2]= 0; //x2=0
+	       				drawPoint[i][3]= -tempOflength; //남향은 -방위처리
+	           		} 
+	       			break;
+	       			
+	       		case 4 : //북쪽
+	           		if(i != 0) {
+	           			drawPoint[i][2]= drawPoint[i][0]; //x2
+	       				drawPoint[i][3]= drawPoint[i][1]+tempOflength; //y2
+	           		}
+	           		else if(i == 0) {
+	           			drawPoint[i][2]= 0; //x2=0
+	       				drawPoint[i][3]= tempOflength; //북향은 +방위처리
+	           		} 
+	       			break;
+	       		default :
+	       			System.out.println("좌표변환 중 예상치못한 에러가 발생했습니다.");
+	       	}
+       		
+       		lengthXY[i][0] = drawPoint[i][2]-drawPoint[i][0]; //x(가로)길이
+       		lengthXY[i][1] = drawPoint[i][3]-drawPoint[i][1]; //y(세로)길이
+       	}
+
+		
+		//Step4. 가로최대값, 세로최대값 찾기 및 변수에저장 실시.
+ 
+       	//누적된 값과 가장 긴 길이값을 비교한다.
+       	//ㄷ형으로 리턴을 오는 경우 실제길이보다 더 길어나게 하는 왜곡을 할 수 있다.
+       	int accumulateLengthX=0;
+       	int accumulateLengthY=0;
+       	int maxOnlyOneLengthX=0;
+       	int maxOnlyOneLengthY=0;
+       	
+       	//반복문을 통해
+       	for(int i=0;i<lengthXY.length;i++){
+       		switch(drawPoint[i][4]) {
+       			//최대가로, 최대세로 값을 구하는 것은 동쪽,북쪽만 구해도 충분함.  		
+       			case 2 : //동쪽
+       				accumulateLengthX=accumulateLengthX+Math.abs(lengthXY[i][0]);   	       				
+       				break;       			
+       			case 4 : //북쪽
+       				accumulateLengthY=accumulateLengthY+Math.abs(lengthXY[i][1]);
+       				break;
+       			default :
+	       			System.out.println("서쪽(1),남쪽(3)는 없어도 최대가로/세로 구할시에는 문제없으므로 반영않습니다.");
+       		}       		
+       		
+       		if(maxOnlyOneLengthX<Math.abs(lengthXY[i][0]) ){
+       			maxOnlyOneLengthX=Math.abs(lengthXY[i][0]);
+       		}
+       		if(maxOnlyOneLengthY<Math.abs(lengthXY[i][1]) ){
+       			maxOnlyOneLengthY=Math.abs(lengthXY[i][1]);
+       		}
+       	}
+
+       	//위의 반복문으로 누적길이와 단일최대길이를 활용하여 최대길이를 설정한다.
        	int maxWidth=0;  //가장긴 가로길이      	
        	int maxHeight=0; //가장긴 세로길이
-       	for(int i=1;i < fieldData.length;i++){
-       		//1 : 동쪽, 2 : 서쪽 
-       		//조건문 통해 방위구분
-       		if(fieldData[i][0] ==1){
-       				maxWidth=maxWidth+fieldData[i][1];
-       		}
-       		else if(fieldData[i][0] ==3){
-       				maxHeight=maxHeight+fieldData[i][1];
-       		}
-       	}*/
-       	
-       	//(아직Step4) 기준점2개의 값을 설정.(오버되는 값이 나오는지 체크용)
-       	int stpZero[][]=new int[1][2];     //(0,0)기준값, stp : stanardPoint
-       	stpZero[0][0] = 0;
-       	stpZero[0][1] = 0;
-       	
-       	/*
-       	int stpDiagonal[][]=new int[1][2]; //(0,0)기준의 대각선(Diagonal)
-       	stpDiagonal[0][0] = maxWidth;
-       	stpDiagonal[0][1] = maxHeight;
-        */
 
-       	//Step5.밭의 범위에 포함되는 이동패턴들을 통해 면적 파악
-   		int melonField=0;       	   		
-   		int areaTemp[]= new int[4];
-   		int cell=0; // areaTemp[]의 배열을 1칸씩 선택위한 변수
-   		
-       	for(int i=1; i < fieldData.length-1 ; i=i+2){
-       		//안쪽을 향하는 경우(밭의 면적에 포함)
-       		if(fieldData[i][0]==2 && fieldData[i+1][0]==4 ){ //└형
-       			areaTemp[cell] = fieldData[i][1]*fieldData[i+1][1];  
-       		}
-       		else if(fieldData[i][0]==4 && fieldData[i+1][0]==2 ){ //<┐형 
-       			areaTemp[cell] = fieldData[i][1]*fieldData[i+1][1];  
-       		}
-       		else if(fieldData[i][0]==2 && fieldData[i+1][0]==3 ){ //┏형 
-       			areaTemp[cell] = fieldData[i][1]*fieldData[i+1][1];  
-       		}
-       		else if(fieldData[i][0]==3 && fieldData[i+1][0]==1 ){ //└>형 
-       			areaTemp[cell] = fieldData[i][1]*fieldData[i+1][1];  
-       		}
-       		else {
-       			areaTemp[cell] = -(fieldData[i][1]*fieldData[i+1][1]);  
-       		}
-       		melonField = melonField+areaTemp[cell];
-       		cell++;
+       	if(accumulateLengthX>maxOnlyOneLengthX){//'ㄷ'자형의 왜곡일 경우 가장긴 길이로 실시.
+       		maxWidth=maxOnlyOneLengthX;
        	}
+       	else { //1개의 max길이가 없는 경우 누적길이로 설정
+       		maxWidth=accumulateLengthX;
+       	}
+
+       	if(accumulateLengthY>maxOnlyOneLengthY){//'ㄷ'자형의 왜곡일 경우 가장긴 길이로 실시.
+       		maxHeight=maxOnlyOneLengthY;
+       	}
+       	else { //1개의 max길이가 없는 경우 누적길이로 설정
+       		maxHeight=accumulateLengthY;
+       	}
+       	       	
+       	//Step5.밭의 범위에 포함되는 이동패턴들을 통해 면적 파악
+   		int melonField= maxWidth*maxHeight; //아직 확정값아님. 아래의 반복문을 통하여 해당되지 않는 구간의 넓이만큼 차감.      	   		
+   		int flag=0; //밭의 면적에서 제외되는 구간으로 인식될때 1로 변경, 제외영역종료시 0으로 변경 및 제외구간만큼 차감.
+
+   		int directionPrevious=drawPoint[0][4];
+   		int directionNow=drawPoint[0][4];//drawPoint의 방위값을 갖게된다.
+
+   		int nextX=0;
+   		int nextY=0;
+   		
+   		int tempPointStart[][] = new int [1][2];
+   		int tempPointEnd[][] = new int [1][2];   		
+   		
+   		for(int i=0; i < drawPoint.length ; i++){
+			if(i!=0) {
+				directionPrevious=drawPoint[i-1][4];
+			}
+   			nextX=drawPoint[i][2];
+   			nextY=drawPoint[i][3];
+   			directionNow=drawPoint[i][4];
+
+   			
+   			
+   			//차감지역을 파악한다.
+   			//진헹방향이 달라지는 시점(북→동 또는 북→서 처럼 변할때)을 밭 외의 면적의 시작으로 파악한다.
+   			if( (flag == 0) && (directionNow != directionPrevious) && (nextX!=0 && nextX!=maxWidth && nextY!=0 && nextY!=maxHeight) ){
+   				flag=1;
+   				//차감할 면적의 값을 계산하기위한 시작지점을 갖는다.
+   				tempPointStart[0][0]=drawPoint[i][2];
+   				tempPointStart[0][1]=drawPoint[i][3];
+       		}
+   			
+   			//차감지역해제 체크
+   			if(flag==1 && ( nextX==0 || nextX==maxWidth || nextY==0 || nextY==maxHeight) ){
+   				//차감지역이 해제되면서 이제 밭이 아닌 구간의 좌표값들을 활용하여 면적계산, "총면적-계산한면적=파악된 밭의면적"식으로 진행한다.
+   		   		tempPointEnd[0][0]=drawPoint[i][2]; 
+   		   		tempPointEnd[0][1]=drawPoint[i][3];
+   		   		
+   		   		//차감지역을 밭의 면적에서 제외한다.
+   		   		melonField=melonField-( (tempPointEnd[0][1]-tempPointStart[0][1])*(tempPointEnd[0][0]-tempPointStart[0][0]) );
+   		   		
+   		   		//다음차감지역을 감지할 수 있도록 flag를 0으로 초기화한다.
+   		   		flag=0;
+   		   		tempPointStart[0][0]=0;
+   		   		tempPointStart[0][1]=0;
+   		   		tempPointEnd[0][0]=0; 
+   		   		tempPointEnd[0][1]=0;
+   			}
+   			
+   		}
 
        		  
        	//Step.밭에서 생산예상되는 참외의 수 계산.
