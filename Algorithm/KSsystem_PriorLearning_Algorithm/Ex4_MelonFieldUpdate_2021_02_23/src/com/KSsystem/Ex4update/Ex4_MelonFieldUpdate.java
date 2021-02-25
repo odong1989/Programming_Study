@@ -43,6 +43,9 @@ public class Ex4_MelonFieldUpdate {
 		int drawPoint[][] = new int[8][5]; // 현지점(x1,y1), 그릴목표점(x2,y2), 방위(초기데이터의 동서남북)
 		int lengthXY[][] = new int[8][2];  // 변동되는 거리의 길이
 
+	       	int maxWidth=0;  //가장긴 가로길이      	
+       		int maxHeight=0; //가장긴 세로길이
+	
 		for(int i=0;i < fieldData.length-1;i++){
 			drawPoint[i][4]=fieldData[i+1][0];
 			if(i != 0) {
@@ -135,9 +138,8 @@ public class Ex4_MelonFieldUpdate {
        		}
        	}
 
+/*
        	//위의 반복문으로 누적길이와 단일최대길이를 활용하여 최대길이를 설정한다.
-       	int maxWidth=0;  //가장긴 가로길이      	
-       	int maxHeight=0; //가장긴 세로길이
 
        	if(accumulateLengthX>maxOnlyOneLengthX){//'ㄷ'자형의 왜곡일 경우 가장긴 길이로 실시.
        		maxWidth=maxOnlyOneLengthX;
@@ -152,6 +154,7 @@ public class Ex4_MelonFieldUpdate {
        	else { //1개의 max길이가 없는 경우 누적길이로 설정
        		maxHeight=accumulateLengthY;
        	}
+*/
        	       	
        	//Step5.밭의 범위에 포함되는 이동패턴들을 통해 면적 파악
    		int melonField= maxWidth*maxHeight; //아직 확정값아님. 아래의 반복문을 통하여 해당되지 않는 구간의 넓이만큼 차감.      	   		
