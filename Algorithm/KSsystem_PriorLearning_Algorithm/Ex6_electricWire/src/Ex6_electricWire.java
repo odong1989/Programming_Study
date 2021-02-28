@@ -17,7 +17,7 @@ public class Ex6_electricWire {
     	String line = "";					 //txt파일의 문자 1줄씩 로드
 		
 		try {
-            //Step2. 데이터 파일 로드(input.txt)
+            //Step2.1 데이터 파일 로드(input.txt)
         	//File file = new File("C:\\KS_system\\Ex2_SecurityUpdate_2021_02_16\\bin\\input.txt"); // 대상 파일
         	
         	File file = new File("C:\\KS_system\\input.txt"); // 대상 파일
@@ -25,7 +25,7 @@ public class Ex6_electricWire {
         	FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             
-            //Step3.InputValue배열에 Input데이터 저장
+            //Step2.2 InputValue배열에 Input데이터 저장
             while( ( line = bufferedReader.readLine() )!=null ) {
             	String[] words = line.split("\\s");	//공백을 기준으로 나눠서 입력
             	for(String wordEach : words) { //1개의 셀마다 저장
@@ -42,14 +42,15 @@ public class Ex6_electricWire {
             System.exit(0); //잘못된 output값 출력않도록 종료처리. 
         }
 		
-		//겹침 횟수를 카운팅할 배열 생성 및 카운팅 실시.
-		//데이터를 정렬하여 로드한다.
+		//Step3. 겹침 횟수를 카운트하기 위한 정렬된 배열을 생성.
 		int compareChart[][] = new int [InputValue.length-1][3]; //총 3열의 데이터(출발번호, 도착번호 ,겹침횟수)
 		int numberOfStart=1;
 		boolean flag=false;
 
+		//사람이 파악하기 쉽도록 하기위해 데이터를 1열의 데이터를 기준으로 오름차순(1,2,3,4..9,10)하여 실시.
 		for(int i=0; i < compareChart.length ;) {
 			for(int j=1; j < InputValue.length ; j++) {
+				//사용된 포트인지 아닌지 여부체크
 				if(flag==false && numberOfStart==InputValue[j][0]){
 					//x,y데이터 삽입
 					compareChart[i][0] = InputValue[j][0];
@@ -69,6 +70,7 @@ public class Ex6_electricWire {
 			}			
 		}
 
+		//Step4. 각 선마다 겹치는 선의 갯수 카운트 후 가장 많은 중복이 되는 선을 반복1회당 1개의 선을 삭제.  
 		int countOfCrash=0;
 		int maxChash = 0;
 		int deleteKey =0;
@@ -81,7 +83,7 @@ public class Ex6_electricWire {
 			maxChash = 0;
 			deleteKey=0;
 			
-			//정렬된 데이터배열을 활용하여 겹침횟수 체크
+			//Step4.1. 정렬된 데이터배열을 활용하여 겹침횟수 체크
 			for(int i=0; i < compareChart.length-countOfDeleteLines;i++) {
 				//겹침횟수 카운팅 실시.
 				for(int j=0; j<compareChart.length;j++){
@@ -92,12 +94,12 @@ public class Ex6_electricWire {
 					int compareEnd = compareChart[j][1];
 					
 					if(standStart != compareStart){
-						//1.↗(3시)방향으로 충돌 발생시 카운트증가
+						//4.1.1.↗(3시)방향으로 충돌 발생시 카운트증가
 						 if(standStart > compareStart && standEnd< compareEnd) {
 							 compareChart[i][2]++;
 						 }
 	
-						//2.↘(5시)방향으로 충돌 발생시 카운트증가 
+						//4.1.2.↘(5시)방향으로 충돌 발생시 카운트증가 
 						 else if(standStart < compareStart && standEnd > compareEnd) {
 							 compareChart[i][2]++;
 						 }
@@ -105,12 +107,13 @@ public class Ex6_electricWire {
 				}				
 			}
 			
-			//겹침횟수 체크 후 최대충돌횟수를 찾는 반복문 실시
+			//Step4.2. 겹침횟수 체크 후 최대충돌횟수를 찾는 반복문 실시
 			for(int k=0; k < compareChart.length-countOfDeleteLines ;k++) {
 				//총 겹침횟수 합계
 				countOfCrash=countOfCrash+compareChart[k][2];
 				
 				//충돌이 가장많이 발생한 전깃줄 찾기
+				//가장많은 충돌이 발생한 전깃줄을 찾기(일반적인 최대값찾기 방식)
 				if(compareChart[k][2] >maxChash){
 					maxChash=compareChart[k][2];
 					deleteKey=k;
@@ -124,12 +127,13 @@ public class Ex6_electricWire {
 				}
 			}
 			
-			//결과출력용 ArrayList resultPrint에 데이터 저장
+			//Step4.3. 결과출력용 ArrayList resultPrint에 데이터 저장
 			if(countOfCrash!=0) {
 				resultPrint.set(0,++countOfDeleteLines);//삭제할 선의개수 +1개를 배열에 반영
 				resultPrint.add(compareChart[deleteKey][0]);//삭제할 선의 번호를 저장			
 				//compareChart배열에서 많이 겹치는 선의 정보 삭제및 배열 재정렬 
 				for(int l=0; l < compareChart.length-countOfDeleteLines ;l++) {
+					 //삭제할 데이터인 경우 뒷배열들의 값을 당겨와서 저장을 실시.
 				     if(l==deleteKey){
 				           for(int m=l; m<compareChart.length-1; m++){
 				        	   compareChart[m][0] =compareChart[m+1][0];
@@ -142,6 +146,7 @@ public class Ex6_electricWire {
 				           compareChart[compareChart.length-countOfDeleteLines][2]=0;
 				        break;
 				     }
+				     //해당하지 않는 데이터들도 전깃줄 초기화를 하도록 실시
 				     else {
 			        	   compareChart[l][2] =0;//전깃줄 카윤트 초기화
 				     }
@@ -149,7 +154,7 @@ public class Ex6_electricWire {
 			}		
 		}while(countOfCrash >0);
 		
-	    //step. output.txt파일로 결과출력
+	    //step5. output.txt파일로 결과출력
 		File file = new File("C:\\KS_system\\output.txt"); // 대상 파일
 	    try {
 	        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
