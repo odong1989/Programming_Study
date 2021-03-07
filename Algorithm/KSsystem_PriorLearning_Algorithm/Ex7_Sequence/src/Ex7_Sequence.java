@@ -44,28 +44,50 @@ public class Ex7_Sequence {
     //Step3.
 		ArrayList<Integer> saveIncreaseSequence = new ArrayList();
 		ArrayList<Integer> saveDecreaseSequence = new ArrayList();
-		saveIncreaseSequence.add(null);
-		saveDecreaseSequence.add(null);
+		saveIncreaseSequence.add(0);
+		saveDecreaseSequence.add(0);
 
     	int cellNumberIncreaseArray =0;
     	int cellNumberDecreaseArray =0;
 		int lengthIncreaseSequence =1;
     	int lengthDecreaseSequence =1;
     	String toggle = "";
-
     	
-		for(int i=1; i<inputData.get(0);i++ ) {
-			if(inputData.get(i) <= inputData.get(i+1)) {
+    	
+		for(int i=1; i<inputData.get(0);i++ ) {	
+	    	if(inputData.get(i)<=inputData.get(i+1)) {
+	    		toggle="Increase";
+	    	}
+	    	else {
+	    		toggle="Decrease";
+	    	}
+		
+
+	    	if(inputData.get(i) <= inputData.get(i+1)) {
 				saveIncreaseSequence.set(cellNumberIncreaseArray, ++lengthIncreaseSequence);
+				if(toggle.equals("Decrease")) {
+					lengthDecreaseSequence=1; //감소수열의 길이 초기화
+
+					++cellNumberIncreaseArray; //새로 길이를 카운트할 셀을 재설정
+					saveIncreaseSequence.add(cellNumberIncreaseArray, ++lengthIncreaseSequence);
+				}				
 			}
 						
-			else if(inputData.get(i) >= inputData.get(i+1)) {
+	    	
+			if(inputData.get(i) >= inputData.get(i+1)) {
 				saveDecreaseSequence.set(cellNumberDecreaseArray, ++lengthDecreaseSequence);
-			}
+				
+				if(toggle.equals("Increase")) { //증가세가 계속되는경우 증가카운트만 실시.
+					lengthIncreaseSequence=1;//증가수열의 길이 초기화
+
+					++cellNumberDecreaseArray;//새로 길이를 카운트할 셀을 재설정				
+					saveDecreaseSequence.add(cellNumberDecreaseArray, ++lengthDecreaseSequence);
+				}
+			}			
+
 		}
 		
-		
-		int maxIncreaseSequence=0;
+   		int maxIncreaseSequence=0;
 		for(int j=0; j<saveIncreaseSequence.size();j++) {
 			if(maxIncreaseSequence <saveIncreaseSequence.get(j)){
 				maxIncreaseSequence=saveIncreaseSequence.get(j);
@@ -73,7 +95,7 @@ public class Ex7_Sequence {
 		}
 
 		int maxDecreaseSequence=0;
-		for(int k=0; k<saveIncreaseSequence.size();k++) {
+		for(int k=0; k<saveDecreaseSequence.size();k++) {
 			if(maxDecreaseSequence <saveDecreaseSequence.get(k)){
 				maxDecreaseSequence=saveDecreaseSequence.get(k);
 			}
