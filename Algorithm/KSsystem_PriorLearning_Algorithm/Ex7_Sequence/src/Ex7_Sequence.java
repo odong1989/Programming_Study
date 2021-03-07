@@ -50,40 +50,33 @@ public class Ex7_Sequence {
     	int cellNumberIncreaseArray =0;
     	int cellNumberDecreaseArray =0;
 		int lengthIncreaseSequence =1;
-    	int lengthDecreaseSequence =1;
-    	String toggle = "";
+    	int lengthDecreaseSequence =1;    	
     	
     	
 		for(int i=1; i<inputData.get(0);i++ ) {	
-	    	if(inputData.get(i)<=inputData.get(i+1)) {
-	    		toggle="Increase";
-	    	}
-	    	else {
-	    		toggle="Decrease";
-	    	}
 		
 
 	    	if(inputData.get(i) <= inputData.get(i+1)) {
 				saveIncreaseSequence.set(cellNumberIncreaseArray, ++lengthIncreaseSequence);
-				if(toggle.equals("Decrease")) {
-					lengthDecreaseSequence=1; //감소수열의 길이 초기화
-
-					++cellNumberIncreaseArray; //새로 길이를 카운트할 셀을 재설정
-					saveIncreaseSequence.add(cellNumberIncreaseArray, ++lengthIncreaseSequence);
-				}				
 			}
+	    	else {
+	    		lengthIncreaseSequence=1;
+
+				++cellNumberIncreaseArray; //새로 길이를 카운트할 셀을 재설정
+				saveIncreaseSequence.add(cellNumberIncreaseArray, 0);
+	    		
+	    	}
 						
 	    	
 			if(inputData.get(i) >= inputData.get(i+1)) {
 				saveDecreaseSequence.set(cellNumberDecreaseArray, ++lengthDecreaseSequence);
-				
-				if(toggle.equals("Increase")) { //증가세가 계속되는경우 증가카운트만 실시.
-					lengthIncreaseSequence=1;//증가수열의 길이 초기화
+			}
+			else {
+				lengthDecreaseSequence=1;
 
-					++cellNumberDecreaseArray;//새로 길이를 카운트할 셀을 재설정				
-					saveDecreaseSequence.add(cellNumberDecreaseArray, ++lengthDecreaseSequence);
-				}
-			}			
+				++cellNumberDecreaseArray;//새로 길이를 카운트할 셀을 재설정				
+				saveDecreaseSequence.add(cellNumberDecreaseArray, 0);
+	    	}			
 
 		}
 		
@@ -110,10 +103,10 @@ public class Ex7_Sequence {
 	    try {
 	        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-	        if(maxIncreaseSequence>maxDecreaseSequence) {
+	        if(maxIncreaseSequence>=maxDecreaseSequence) {
 		        writer.write(Integer.toString(maxIncreaseSequence));	        	
 	        }
-	        else if(maxIncreaseSequence<maxDecreaseSequence) {
+	        else if(maxIncreaseSequence<=maxDecreaseSequence) {
 		        writer.write(Integer.toString(maxDecreaseSequence));	        	
 	        }
 
