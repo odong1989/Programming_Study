@@ -37,7 +37,7 @@ public class Ex8_Jewelry {
             e.printStackTrace();
             System.exit(0); //잘못된 output값 출력않도록 종료처리. 
         }
-    	int k =inputData.get(4);
+    	int k =inputData.get(3);
     	
     	int[][] map = new int[inputData.get(0)+1][inputData.get(1)+1]; 
 
@@ -55,26 +55,49 @@ public class Ex8_Jewelry {
     	}
     	
     	
-    	ArrayList<Integer> findJewelyEA = new ArrayList();  //로드 데이터 저장하는 배열
-    	//맵 반복하여 풀기 실시
-    	int cell=0;
+    	int[] maxJewelyData=new int[3];
     	int countJewelry=0;
-    	for(int x=0; x<(map.length-k);x++) {
-    		for(int y=0; y<(map[y].length-k); y++) {
-
-    			for(int searchX=0;searchX<=k;searchX++){
-        			findJewelyEA.add(null);
-    				for(int searchY=0;searchY<=k;searchY++){
-        				if(map[x][y]==1) {
-        		    		findJewelyEA.set(cell,++countJewelry);
+		for(int y=0; y<(map[y].length-k); y++) {
+			for(int x=0; x<(map.length-k);x++) {
+    			for(int searchX=x; searchX<=k+x; searchX++){
+    				for(int searchY=y;searchY<=k+y;searchY++){
+        				if(map[searchX][searchY]==1) {
+        					countJewelry++;
         				}
-        			}	
-    	    	cell++;
-    	    	countJewelry=0;    			
-    			}
-    		}
+        			}
+    			}  			
 
+    			if(maxJewelyData[2]<countJewelry) {
+    				maxJewelyData[0]=x;
+    				maxJewelyData[1]=y;
+    				maxJewelyData[2]=countJewelry;
+    			}
+    	    	countJewelry=0;  
+    		}
+    		
     	}
+    	
+
+		//Step5.output.txt파일로 결과출력
+			File file = new File("C:\\KS_system\\output.txt"); // 대상 파일
+			try {
+				BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+
+				for(int output=0; output < maxJewelyData.length;output++) {
+					if(output==2) {
+			        	writer.write( "\n".toString() );						
+					}
+		        	writer.write( Integer.toString(maxJewelyData[output]));
+		        	writer.write( " ".toString() );						
+				}
+
+		        writer.close();
+		        System.out.println("예제4의 output.txt 파일이 출력완료되었습니다.");
+		        
+		    }	 catch (IOException e) {
+		        e.printStackTrace();
+		    }
+    	
     	
 	    //실행된 시간 코드 추가        
 		long afterTime = System.currentTimeMillis(); // 코드 실행 후에 시간 받아오기
