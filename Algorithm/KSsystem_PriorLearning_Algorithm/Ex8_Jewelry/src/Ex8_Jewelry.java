@@ -36,6 +36,7 @@ public class Ex8_Jewelry {
             System.exit(0); //잘못된 output값 출력않도록 종료처리. 
         }
  
+    	//Step3.각 좌표별 보석의 유무를 표현
     	//k : 탐색을 할 칸의 값
     	int k =inputData.get(3);
     	
@@ -55,7 +56,9 @@ public class Ex8_Jewelry {
 	    	location=location+2;
     	}
     	
+    	//Step4.가장 많음 보석 채굴위치 및 개수 파악 반복문
     	//maxJewelyData : 가장 많음 보석을 채굴할 수 있는 좌표와 획득보석개수
+    	//좌쵸의 기준이 좌측하단(시계7시 방향)이며 좌측 상단으로 나오도록 수정중.
     	int[] maxJewelyData=new int[3];
     	
     	// countJewelry : 가장 많은 보석을 채굴하기 위해 비교용도로 사용할 변수.
@@ -70,7 +73,8 @@ public class Ex8_Jewelry {
         				}
         			}
     			}  			
-
+    			
+    			//가장 많은 보석이 채굴될 좌표로 판단시 저장.
     			if(maxJewelyData[2]<countJewelry) {
     				maxJewelyData[0]=x;
     				maxJewelyData[1]=y;
