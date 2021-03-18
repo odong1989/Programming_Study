@@ -25,9 +25,8 @@ threshold = 0.5
 
 #Classification Tree 시작
 
-library(rpart)
-
-set.seed(1234)
+#library(rpart)
+#set.seed(1234)
 
 #훈련용 데이터, 평가용 데이터 분할
 i = sample(1:nrow(german), round(nrow(german)*0.7) )
@@ -36,7 +35,7 @@ german.test = german[-i] #나머지 30%는 평가용으로 사용한다.
 
 #나무모형 만들기 시작
 my.control = rpart.control(xval=10, cp = 0, minsplit = 5)
-fit.tree = rpart(y ~ , data = german.train, method="class", control=my.control)
+fit.tree = rpart(y ~ ., data = german.train, method="class", control=my.control)
 ii = which.min(fit.tree$cp[,4])
 fit.prun.tree = prune(fit.tree, cp = fit.tree$cp[ii,1])
 
