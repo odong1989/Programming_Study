@@ -5,6 +5,7 @@ The public type Professor must be defined in its own file 자바 에러가 뜬�
 
 참고 링크 : https://mainia.tistory.com/1952
 */
+
 class Person{
     String phone;
 
