@@ -1,5 +1,3 @@
-import jdk.javadoc.internal.doclets.toolkit.CommentUtils.DocCommentInfo;
-
 class DObject{
     public DObject next;
     
