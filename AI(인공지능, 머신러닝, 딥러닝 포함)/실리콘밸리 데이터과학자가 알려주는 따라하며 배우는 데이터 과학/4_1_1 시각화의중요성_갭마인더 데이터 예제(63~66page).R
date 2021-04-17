@@ -1,4 +1,4 @@
-#책 63page
+#책 63~66page
 #install.packages("gapminder")
 library(gapminder)
 #gapminder
