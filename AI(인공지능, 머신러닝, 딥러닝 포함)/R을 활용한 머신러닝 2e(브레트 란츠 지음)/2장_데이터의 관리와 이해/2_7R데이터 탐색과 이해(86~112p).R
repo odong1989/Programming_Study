@@ -56,4 +56,10 @@ median(c(36000, 44000, 56000,99000)) #4개처럼 짝수개인 경우 중앙에 �
 
 
 #퍼짐 측정(92~)
+range(usedcars$price)
 
+diff(range(usedcars$price))
+
+IQR(usedcars$price)
+
+quantile(usedcars$price)
