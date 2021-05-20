@@ -63,3 +63,17 @@ diff(range(usedcars$price))
 IQR(usedcars$price)
 
 quantile(usedcars$price)
+
+
+# the 99th percentile
+quantile(usedcars$price, probs = c(0.01, 0.99))
+
+# quintiles
+quantile(usedcars$price, seq(from = 0, to = 1, by = 0.20))
+
+# boxplot of used car prices and mileage
+boxplot(usedcars$price, main="Boxplot of Used Car Prices",
+        ylab="Price ($)")
+
+boxplot(usedcars$mileage, main="Boxplot of Used Car Mileage",
+        ylab="Odometer (mi.)")
