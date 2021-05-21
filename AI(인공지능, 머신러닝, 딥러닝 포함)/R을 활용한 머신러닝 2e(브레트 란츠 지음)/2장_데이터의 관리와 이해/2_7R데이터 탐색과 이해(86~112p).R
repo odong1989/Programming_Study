@@ -1,6 +1,6 @@
 #데이터 탐색과 이해(86~87) 
-usedcars <-read.csv("C:/sourceTree/Programming_Study/AI(인공지능, 머신러닝, 딥러닝 포함)/R을 활용한 머신러닝 2e(브레트 란츠 지음)/2장_데이터의 관리와 이해/usedcars.csv",
-                    stringAsFactors = FALSE)
+usedcars <-read.csv("C:/sourceTree/Programming_Study/AI(인공지능, 머신러닝, 딥러닝 포함)/R을 활용한 머신러닝 2e(브레트 란츠 지음)/2장_데이터의 관리와 이해/usedcars.csv")
+#책에서는 read.csv( "경로",stringAsFactors = FALSE)인데 stringAsFactors = FALSE가 있으면 되려 에러가 발생.
 usedcars
 
 #데이터 구조 탐색(87~88)
@@ -56,22 +56,38 @@ median(c(36000, 44000, 56000,99000)) #4개처럼 짝수개인 경우 중앙에 �
 
 
 #퍼짐 측정(92~)
+#평균과 중앙값측정의 장점/단점
+#장점 : 값을 빠르게 요약.
+#단점 : 다양성이 있는지 파악불가(다양성을 파악하려면 데이터의 퍼짐을 파악해야 함.)
+
+#이에 따라 sumarry()함수는 다섯종류의 통계값을 출력하여 퍼짐을 묘사한다.
+#1.최소값 : 최대값과 함께 통계값에서 가장 멀리 퍼진 값.(min()함수 사용)
+#2.1사분위(또는 Q1) 
+#3.중앙값(또는 Q2) 
+#4.4사분위(또는 Q3)
+#5.최댓값 : 최소값과 함께 통계값에서 가장 멀리 퍼진 값.(max()함수 사용)
+
+#범위(range) : 최대값~최소값 사이의 폭.
 range(usedcars$price)
+#range()함수와 diff()함수를 함께 사용하면 데이터 범위를 조사할 수 있다.
+diff(range(usedcars$price)) # 범위=최대값-최소값=21992-3800=18192
 
-diff(range(usedcars$price))
+#사분위수 : 분위수(quantiles)라는 통계 유형의 특별한 경우이다.
+#           분위수는 데이터를 같은 크기의 수량으로 나누는 숫자.
+#           4분위수 이외에로 3분위수/5분위수/10분위수/100분위수 등이 있다.
 
+
+#사분위수 범위 : 1사분면(Q1) 3사분면(Q3)의 사이의 50% 데이터는 퍼짐척도로 활용가능하다. 
+#IQR() : 사분위수 범위를 계산하는 함수
 IQR(usedcars$price)
 
 quantile(usedcars$price)
 
 
-# the 99th percentile
 quantile(usedcars$price, probs = c(0.01, 0.99))
 
-# quintiles
 quantile(usedcars$price, seq(from = 0, to = 1, by = 0.20))
 
-# boxplot of used car prices and mileage
 boxplot(usedcars$price, main="Boxplot of Used Car Prices",
         ylab="Price ($)")
 
