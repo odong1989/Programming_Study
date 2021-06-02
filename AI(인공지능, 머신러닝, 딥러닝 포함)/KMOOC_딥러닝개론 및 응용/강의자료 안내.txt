@@ -1,0 +1,19 @@
+사용교재 : 케라스 창시자로부터 배우는 딥러닝
+◈ 실습 소스코드(Gihub)
+
+2주차
+1. URL: https://github.com/gilbutITbook/006975
+2. 실습 코드 URL:  https://github.com/gilbutITbook/006975/blob/master/2.1-a-first-look-at-a-neural-network.ipynb
+
+4주차
+◈ 실습 소스코드(Gihub)
+1. URL httpsgithub.comgilbutITbook006975
+실습 코드 URL httpsgithub.comgilbutITbook006975blobmaster4.4-overfitting-and-underfitting.ipynb
+
+7주차
+실습 코드 URL:
+https://github.com/gilbutITbook/006975/blob/master/6.1-one-hot-encoding-of-words-or-characters.ipynb
+https://github.com/gilbutITbook/006975/blob/master/6.1-using-word-embeddings.ipynb
+https://github.com/gilbutITbook/006975/blob/master/6.2-understanding-recurrent-neural-networks.ipynb
+https://github.com/gilbutITbook/006975/blob/master/6.3-advanced-usage-of-recurrent-neural-networks.ipynb
+https://github.com/gilbutITbook/006975/blob/master/6.4-sequence-processing-with-convnets.ipynb
