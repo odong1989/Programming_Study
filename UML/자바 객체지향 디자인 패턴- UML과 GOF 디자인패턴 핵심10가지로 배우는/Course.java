@@ -10,6 +10,6 @@ public class Course {
     }
 
     public void deleteStudent(){
-        
+
     }
 }
