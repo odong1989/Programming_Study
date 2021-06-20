@@ -63,16 +63,37 @@
 
 
 
-read in data and examine structure
-concrete <- read.csv("concrete.csv")
-str(concrete)
 
+#예제 : ANN으로 콘크리트 강도 모델링========================================================================
+
+#1단계 데이터 수집(321~323)
+concrete <- read.csv("C:/sourceTree/Programming_Study/AI(인공지능, 머신러닝, 딥러닝 포함)/책_R을 활용한 머신러닝 2e(브레트 란츠 지음)/7장/concrete.csv")
+str(concrete)
+#데이터를 분석하면 
+#(1)9개의 변수는 8개의 특징과 1개의 결과를 갖고 있다.
+#(2)변수들의 값이 0~1000으로 다양하기에 신경망을 그대로 적용하기 어렵다
+#   (*신경망의 경은 입력데이터가 0에 가까운 값들일수록 잘 작동함) 
+#(3)신경망에 적용하기 위해 정규화/표준화 함수로 데이터 재조정을 실시한다.
+#   (=데이터가 비정규적이기에 0~1으로 정규화를 실시한다.)
+
+
+#정규화를 실시하기 위한 코드
+#3장에서 정의한 normalize의 함수 코드
 normalize <- function(x) { 
   return((x - min(x)) / (max(x) - min(x)))
 }
 
+#lapplt()함수를 이용하여 콘크리트 데이터 프레임의 모든열에 normalize() 함수를 적용한다.
 concrete_norm <- as.data.frame(lapply(concrete, normalize))
 
+#0~1으로 정규화가 되었는지를 확인하기 위해 summary함수를 사용함.
 summary(concrete_norm$strength)
 
+#정규화 않은 원래의 값. 2.33~82.60까지 매우 폭이 넓으며 0~1으로 상당히 정규화되었음을 알 수 있다.
 summary(concrete$strength)
+
+
+#정규화한 다음에 훈련용/평가용으로 데이터들을 나눈다.
+concrete_train <- concrete_norm[1:733,]
+concrete_test  <- concrete_norm[734:1030,]
+
