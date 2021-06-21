@@ -66,7 +66,9 @@
 
 #예제 : ANN으로 콘크리트 강도 모델링========================================================================
 
-#1단계 데이터 수집(321~323)
+#1단계 데이터 수집(321)
+
+#2단계 데이터 탐색 및 준비(322~323)
 concrete <- read.csv("C:/sourceTree/Programming_Study/AI(인공지능, 머신러닝, 딥러닝 포함)/책_R을 활용한 머신러닝 2e(브레트 란츠 지음)/7장/concrete.csv")
 str(concrete)
 #데이터를 분석하면 
@@ -97,3 +99,18 @@ summary(concrete$strength)
 concrete_train <- concrete_norm[1:733,]
 concrete_test  <- concrete_norm[734:1030,]
 
+
+#3단계. 데이터 통한 모델 훈련
+#사용할 신경망    : 다층 순방향 신경망
+#위의 신경망 이유 : 콘크리트에 사용된 재료와 완성된 산출물의 강도 사이에 관계를 리모델링 하기 위해.
+#사용할 패키지    : neralnet 패키지
+#neralnet 패키지  : 사용하기 쉬운 표준 신경망의 구현 가능.
+
+#추가설명 : R에서 사용되는 ANN모델들은 각각의 장단점을 갖는다.
+#(1)nnet 패키지 : 표준 R에 기본적으로 설치되는 패키지라서 가장 자주 사용된다.  
+#                 또한 표준 역전파보다 더 지능적인 알고리즘을 사용.
+#(2)RSNNS 패키지 : 완벽한 신경망 기능의 모음을 제공. 배우기 어렵다는게 단점.
+
+install.packages("neuralnet")
+library(neuralnet)
+concrete_model <- neuralnet(strength ~cement + slag + ash + water + superplastic + coarseagg + fineagg + age, data = concrete_train)
