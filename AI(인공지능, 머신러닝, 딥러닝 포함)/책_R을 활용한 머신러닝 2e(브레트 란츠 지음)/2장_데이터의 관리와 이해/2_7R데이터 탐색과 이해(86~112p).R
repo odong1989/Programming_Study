@@ -88,6 +88,11 @@ quantile(usedcars$price, probs = c(0.01, 0.99))
 
 quantile(usedcars$price, seq(from = 0, to = 1, by = 0.20))
 
+#상자그림-수치 변수의 시각화(95~)
+#상자그림(또는 상자수염그림) : 다숫 숫자 요약을 일반적으로 시각화 한 것.
+#-수치 변수를 시각화하면 데이터 문제를 진단하는데 도움이 된다.
+#-상자그림은 변수의 중심과 퍼짐을 보여줄 때 변수의 범위와 왜도을 빠르게 이해할 수 있다.
+# 다른 변수와 비교할 수 있는 형식으로 보여준다.
 boxplot(usedcars$price, main="Boxplot of Used Car Prices",
         ylab="Price ($)")
 
