@@ -1,5 +1,5 @@
 #데이터 탐색과 이해(86~87) 
-usedcars <-read.csv("C:/sourceTree/Programming_Study/AI(인공지능, 머신러닝, 딥러닝 포함)/R을 활용한 머신러닝 2e(브레트 란츠 지음)/2장_데이터의 관리와 이해/usedcars.csv")
+usedcars <-read.csv("C:/sourceTree/Programming_Study/AI(인공지능, 머신러닝, 딥러닝 포함)/책_R을 활용한 머신러닝 2e(브레트 란츠 지음)/2장_데이터의 관리와 이해/usedcars.csv")
 #책에서는 read.csv( "경로",stringAsFactors = FALSE)인데 stringAsFactors = FALSE가 있으면 되려 에러가 발생.
 usedcars
 
@@ -98,3 +98,12 @@ boxplot(usedcars$price, main="Boxplot of Used Car Prices",
 
 boxplot(usedcars$mileage, main="Boxplot of Used Car Mileage",
         ylab="Odometer (mi.)")
+
+
+#수치 변수 시각화 : 히스토그램
+#히스토그램 : 수치 변수의 퍼짐을 그래프로 그리는 또 다른 방법.(상자그림이 있다)
+#상자그림과의 공통점 : 미리 개수가 정해진 부분 또는 빈으로 변수값을 나눈다는 것.
+#상자그림과의 차이점 : 상자그림은 데이터의 네부분이 각각 같은 개수의 값을 포함하여
+#                       필요한 간큼 빈을 넓히거나 줄일 수 있다.
+#                      반면에 히스토그램은 동일한 폭의 빈을 갯수제한없이 쓸수 있다.
+#                     또한 히스토그램은 빈에 포함된 값의 개수도 다르다.
