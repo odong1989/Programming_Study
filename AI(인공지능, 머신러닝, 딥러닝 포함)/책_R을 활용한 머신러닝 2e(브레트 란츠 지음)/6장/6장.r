@@ -42,3 +42,11 @@ r <- cov(launch$temperature, launch$distress_ct) /
        (sd(launch$temperature) * sd(launch$distress_ct))
 r
 cor(launch$temperature, launch$distress_ct)
+
+reg <- function(y, x) {
+  x <- as.matrix(x)
+  x <- cbind(Intercept = 1, x)
+  b <- solve(t(x) %*% x) %*% t(x) %*% y
+  colnames(b) <- "estimate"
+  print(b)
+}
