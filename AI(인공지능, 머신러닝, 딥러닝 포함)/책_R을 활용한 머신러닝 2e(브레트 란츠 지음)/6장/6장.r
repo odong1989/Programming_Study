@@ -50,3 +50,26 @@ reg <- function(y, x) {
   colnames(b) <- "estimate"
   print(b)
 }
+
+
+# examine the launch data
+str(launch)
+
+# test regression model with simple linear regression
+reg(y = launch$distress_ct, x = launch[2])
+
+# use regression model with multiple regression
+reg(y = launch$distress_ct, x = launch[2:4])
+
+# confirming the multiple regression result using the lm function (not in text)
+model <- lm(distress_ct ~ temperature + pressure + launch_id, data = launch)
+model
+
+## Example: Predicting Medical Expenses ----
+## Step 2: Exploring and preparing the data ----
+insurance <- read.csv("insurance.csv", stringsAsFactors = TRUE)
+str(insurance)
+
+# summarize the charges variable
+summary(insurance$expenses)
+
