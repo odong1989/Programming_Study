@@ -55,6 +55,14 @@ dvd_rule
 #연관규칙 수행결과 : dvdtrans 데이터
 #영상 11:00
 
+summary(dvd_rule)
 
 
+inspect(dvd_rule)
+
+
+#연관규칙 수행결과
+itemFrequencyPlot(dvd.trans,support=0.2, 
+                  main="item for support >=0.2",
+                  col="green")
 
