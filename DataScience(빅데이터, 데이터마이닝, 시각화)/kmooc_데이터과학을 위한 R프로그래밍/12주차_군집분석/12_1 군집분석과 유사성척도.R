@@ -13,7 +13,8 @@
 #       : 객체간 상관계수가 클수록 두 객체의 유사성이 커짐
 
 
-#유클리디안 거리 예제
+#거리척도 예제
+#(1)유클리디안 거리 예제
 #lec 12_1_clus.R
 #Clustering
 #Distance measure
@@ -28,7 +29,25 @@ m1 #m1이 매트릭스 구성임을 확임
 m1<-as.data.frame(m1) #m1을 데이터프레임으로 변경.
 m1
 
-D1 <-dist(m1)
+D1 <-dist(m1) #dist() : 거리계산 옵션.help("dist")에서 자세히 확인 가능
 D1
 
-dist()#거리계산 옵션.help("dist")에서 자세히 확인 가능
+
+#(2)민코프스키 거리(Minkowski distance)
+D2 <- dist(m1, method="minkowski", p=3) #dist(data(or matrix), method="minliwski",p=3)
+D2
+
+
+#상관계수측정(cor) 예제
+
+m2 <- matrix(
+  c(20, 6, 14, 30, 7, 15, 46, 4, 2),
+  nrow=3,
+  ncol=3,
+  byrow=TRUE)
+
+m2
+
+#상관계수 측정
+cor(m2[1,], m2[2,] )
+cor(m2[1,], m2[3,] )
