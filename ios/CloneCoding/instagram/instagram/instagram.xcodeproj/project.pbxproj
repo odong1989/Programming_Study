@@ -137,6 +137,7 @@
 		1169915E2699BFAA009DD9BF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1169916D2699D5B1009DD9BF /* Other */,
 				1169916C2699CF78009DD9BF /* Core Tabs */,
 			);
 			name = Controllers;
@@ -186,6 +187,13 @@
 				1169916A2699CEDB009DD9BF /* ProfileViewController.swift */,
 			);
 			name = "Core Tabs";
+			sourceTree = "<group>";
+		};
+		1169916D2699D5B1009DD9BF /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
