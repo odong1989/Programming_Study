@@ -19,6 +19,16 @@
 		116991662699CCEB009DD9BF /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116991652699CCEB009DD9BF /* CameraViewController.swift */; };
 		116991692699CE40009DD9BF /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116991682699CE40009DD9BF /* NotificationViewController.swift */; };
 		1169916B2699CEDB009DD9BF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169916A2699CEDB009DD9BF /* ProfileViewController.swift */; };
+		116991702699D719009DD9BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169916F2699D718009DD9BF /* LoginViewController.swift */; };
+		116991722699D750009DD9BF /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116991712699D750009DD9BF /* RegistrationViewController.swift */; };
+		116991742699D92F009DD9BF /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116991732699D92F009DD9BF /* PostViewController.swift */; };
+		116991762699D948009DD9BF /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116991752699D948009DD9BF /* EditProfileViewController.swift */; };
+		116991782699D965009DD9BF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116991772699D965009DD9BF /* SettingViewController.swift */; };
+		1169917A2699D98A009DD9BF /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116991792699D98A009DD9BF /* ListViewController.swift */; };
+		1169917C2699D9A9009DD9BF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169917B2699D9A9009DD9BF /* SearchViewController.swift */; };
+		1169917E2699D9C5009DD9BF /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169917D2699D9C4009DD9BF /* SearchResultViewController.swift */; };
+		116991802699DBA3009DD9BF /* PostEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1169917F2699DBA3009DD9BF /* PostEditorViewController.swift */; };
+		116991822699DBDC009DD9BF /* PublishPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116991812699DBDC009DD9BF /* PublishPostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +67,16 @@
 		116991652699CCEB009DD9BF /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		116991682699CE40009DD9BF /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		1169916A2699CEDB009DD9BF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1169916F2699D718009DD9BF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		116991712699D750009DD9BF /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		116991732699D92F009DD9BF /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		116991752699D948009DD9BF /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		116991772699D965009DD9BF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		116991792699D98A009DD9BF /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		1169917B2699D9A9009DD9BF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		1169917D2699D9C4009DD9BF /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		1169917F2699DBA3009DD9BF /* PostEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditorViewController.swift; sourceTree = "<group>"; };
+		116991812699DBDC009DD9BF /* PublishPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishPostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,8 +212,26 @@
 		1169916D2699D5B1009DD9BF /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				1169916E2699D668009DD9BF /* Onboarding */,
+				116991732699D92F009DD9BF /* PostViewController.swift */,
+				116991752699D948009DD9BF /* EditProfileViewController.swift */,
+				116991772699D965009DD9BF /* SettingViewController.swift */,
+				116991792699D98A009DD9BF /* ListViewController.swift */,
+				1169917B2699D9A9009DD9BF /* SearchViewController.swift */,
+				1169917D2699D9C4009DD9BF /* SearchResultViewController.swift */,
+				1169917F2699DBA3009DD9BF /* PostEditorViewController.swift */,
+				116991812699DBDC009DD9BF /* PublishPostViewController.swift */,
 			);
 			name = Other;
+			sourceTree = "<group>";
+		};
+		1169916E2699D668009DD9BF /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				1169916F2699D718009DD9BF /* LoginViewController.swift */,
+				116991712699D750009DD9BF /* RegistrationViewController.swift */,
+			);
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,13 +364,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				116991762699D948009DD9BF /* EditProfileViewController.swift in Sources */,
 				116991642699CB82009DD9BF /* ExploreViewController.swift in Sources */,
+				116991822699DBDC009DD9BF /* PublishPostViewController.swift in Sources */,
 				116991662699CCEB009DD9BF /* CameraViewController.swift in Sources */,
 				116991692699CE40009DD9BF /* NotificationViewController.swift in Sources */,
+				116991722699D750009DD9BF /* RegistrationViewController.swift in Sources */,
+				116991802699DBA3009DD9BF /* PostEditorViewController.swift in Sources */,
+				116991742699D92F009DD9BF /* PostViewController.swift in Sources */,
 				116991332699BF50009DD9BF /* HomeViewController.swift in Sources */,
+				1169917E2699D9C5009DD9BF /* SearchResultViewController.swift in Sources */,
+				116991702699D719009DD9BF /* LoginViewController.swift in Sources */,
+				1169917C2699D9A9009DD9BF /* SearchViewController.swift in Sources */,
 				1169916B2699CEDB009DD9BF /* ProfileViewController.swift in Sources */,
 				1169912F2699BF50009DD9BF /* AppDelegate.swift in Sources */,
 				116991312699BF50009DD9BF /* SceneDelegate.swift in Sources */,
+				1169917A2699D98A009DD9BF /* ListViewController.swift in Sources */,
+				116991782699D965009DD9BF /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
