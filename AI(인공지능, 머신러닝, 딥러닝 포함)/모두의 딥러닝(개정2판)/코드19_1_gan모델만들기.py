@@ -22,6 +22,10 @@ generator.add(BatchNormalization() )
 generator.add(Reshape((7,7,128)) )
 generator.add(UpSampling2D() )
 generator.add(Conv2D(64, kernel_size=5, padding='same', activation='tanh' ) )
+generator.add(BatchNormalization())
+generator.add(Activation( LeakyReLU(0.2) ))
+generator.add(UpSampling2D())
+generator.add(Conv2D(1,kernel_size=5, padding='same', activation='tanh'))
 
 
 
