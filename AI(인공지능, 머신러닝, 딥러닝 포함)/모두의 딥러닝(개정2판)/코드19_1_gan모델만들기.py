@@ -28,9 +28,17 @@ generator.add(UpSampling2D())
 generator.add(Conv2D(1,kernel_size=5, padding='same', activation='tanh'))
 
 #판별자 모델 만들기
-discriminator = Sequential()
-discriminator = add.(Conv2D(64,kernel_Size=5, strides=2, input_shape(28,28,1),
-                             padding="same"))
+discriminator = Sequential() 
+discriminator.add(Conv2D(64, kernel_size=5, strides=2, input_shape=(28,28,1), padding="same"))
+discriminator.add(Activation(LeakyReLU(0.2)) )
+discriminator.add(Dropout(0,3))
+discriminator.add(Conv2D(128,kernel_size=5, strides=2, padding="same"))
+discriminator.add(Activation( LeakyReLU(0.2)) )
+discriminator.add(Dropout(0.3))
+discriminator.add(Flatten())
+discriminator.add(Dense(1,activation='sigmoid'))
+discriminator.compile(loss='binary_crossentropy', optimizer='adam')
+discriminator.trainable = False
 
 
 
