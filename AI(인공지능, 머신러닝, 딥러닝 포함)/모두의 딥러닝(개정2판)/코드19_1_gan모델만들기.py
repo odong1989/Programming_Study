@@ -40,5 +40,11 @@ discriminator.add(Dense(1,activation='sigmoid'))
 discriminator.compile(loss='binary_crossentropy', optimizer='adam')
 discriminator.trainable = False
 
+#생성자와 판별자 모델을 연결시키는 GAN 모델 만들기
+ginput = Input(shape=(100,))
 
+dis_output = discriminator(generator(ginput))
+gan = Model(ginput, dis_output)
+gan.compile(loss='binary_crossentropy', optimizer='adam')
+gan.summary()
 
