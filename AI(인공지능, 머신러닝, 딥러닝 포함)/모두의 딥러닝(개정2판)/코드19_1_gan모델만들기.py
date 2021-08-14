@@ -48,3 +48,5 @@ gan = Model(ginput, dis_output)
 gan.compile(loss='binary_crossentropy', optimizer='adam')
 gan.summary()
 
+#신경망을 실행시키는 함수 만들기
+def gan_train(epoch, batch_size, saving_interval):
