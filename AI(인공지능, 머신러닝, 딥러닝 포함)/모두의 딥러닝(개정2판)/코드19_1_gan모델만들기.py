@@ -50,3 +50,10 @@ gan.summary()
 
 #신경망을 실행시키는 함수 만들기
 def gan_train(epoch, batch_size, saving_interval):
+
+#MNIST 데이터 불러오기
+#앞서 불러온 MNIST를 다시 이용한다.
+#X_train만 호출한다.(테스트 과정은 필요없으며 이미지만 활용하기 때문.)
+
+(X_train, _), (_, _) = mnist.load_data()
+X_train = X_train.reshape(X_train.shape[0], 28, 28, 1).astype('float32')
