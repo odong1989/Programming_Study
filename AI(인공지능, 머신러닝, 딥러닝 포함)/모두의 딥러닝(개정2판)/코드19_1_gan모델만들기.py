@@ -57,3 +57,8 @@ def gan_train(epoch, batch_size, saving_interval):
 
 (X_train, _), (_, _) = mnist.load_data()
 X_train = X_train.reshape(X_train.shape[0], 28, 28, 1).astype('float32')
+
+#127.5를 빼준 뒤, 127.5로 나눠서 -1~1사이의 값으로 바꿈.
+X_train = (X_train - 127.5) /127.5
+true = np.ones(( batch_size, 1))
+fake = np.zeros(( batch_size, 1 ))
