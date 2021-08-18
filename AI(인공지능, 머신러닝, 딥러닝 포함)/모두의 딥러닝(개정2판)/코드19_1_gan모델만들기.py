@@ -62,3 +62,8 @@ X_train = X_train.reshape(X_train.shape[0], 28, 28, 1).astype('float32')
 X_train = (X_train - 127.5) /127.5
 true = np.ones(( batch_size, 1))
 fake = np.zeros(( batch_size, 1 ))
+
+#실제 데이터를 판별자에 입력
+idx = np.random.randint(0, X_train.shape[0], batch_size)
+imgs = X_train[idx]
+d_loss_real = discriminator.train_on_batch(imgs,true)
