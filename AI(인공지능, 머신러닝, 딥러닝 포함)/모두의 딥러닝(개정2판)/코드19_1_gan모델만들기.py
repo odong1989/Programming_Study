@@ -67,3 +67,8 @@ fake = np.zeros(( batch_size, 1 ))
 idx = np.random.randint(0, X_train.shape[0], batch_size)
 imgs = X_train[idx]
 d_loss_real = discriminator.train_on_batch(imgs,true)
+
+#가상 이미지를 판별자에 입력
+noise = np.random.normal(0,1,(batch_size,100))
+gen_imgs = generator.predict(noise)
+d_loss_fake = discriminator.train_on_batch(gen_imgs,fake)
