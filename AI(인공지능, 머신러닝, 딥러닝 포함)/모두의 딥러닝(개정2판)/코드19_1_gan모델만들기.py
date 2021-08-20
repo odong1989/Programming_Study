@@ -72,3 +72,9 @@ d_loss_real = discriminator.train_on_batch(imgs,true)
 noise = np.random.normal(0,1,(batch_size,100))
 gen_imgs = generator.predict(noise)
 d_loss_fake = discriminator.train_on_batch(gen_imgs,fake)
+
+#판별자와 생성자의 오차 계산
+d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
+g_loss = gan.train_on_batch(noise, true)
+
+print('epoch:%d' % i, 'd_loss:%.4f' % d_loss, 'g_loss:%.4f' % g_loss)
