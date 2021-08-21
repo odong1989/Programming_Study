@@ -78,3 +78,12 @@ d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
 g_loss = gan.train_on_batch(noise, true)
 
 print('epoch:%d' % i, 'd_loss:%.4f' % d_loss, 'g_loss:%.4f' % g_loss)
+
+#중간 과정을 이미지로 저장하는 구간.
+#정해진 인터벌만큼 학습되면 그때 만든 이미지를 gan_images 폴더에 더장하라는 뜻을 갖는다.
+#이 코드는 본 장의 주된 목표와는 관계가 없는 관계로 소스코드 소개만 한다.
+
+if i % saving_interval == 0 :
+# r,c = 5,5
+noise = np.random.normal(0,1,(25,100))
+gen_imgs = generator.predict(noise)
