@@ -87,3 +87,6 @@ if i % saving_interval == 0 :
 # r,c = 5,5
 noise = np.random.normal(0,1,(25,100))
 gen_imgs = generator.predict(noise)
+
+#Rescale images 0~1
+gen_imgs = 0.5 * gen_imgs +0.5
