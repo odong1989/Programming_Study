@@ -90,3 +90,15 @@ gen_imgs = generator.predict(noise)
 
 #Rescale images 0~1
 gen_imgs = 0.5 * gen_imgs +0.5
+
+fig, axs = plt.subplots(5,5)
+count =0
+for j in range(5):
+for k in range(5):
+    axs[j, k].imshow(gen_imgs[count, :, :, 0], cmap='gray')
+    axs[j, k].axis('off')
+    count += 1
+    fig.savefig("gan_images/gan_mnist_%d.png" % i)
+
+#4000번 반복하고(+1을 하는 것을 주의하라고 함), 배치 크기는 32, 200번마다 결과가 저장됨.
+gan_train(4001, 32, 200)
