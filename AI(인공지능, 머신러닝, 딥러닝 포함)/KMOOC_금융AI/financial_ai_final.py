@@ -35,20 +35,37 @@ Original file is located at
 # [문제 1] (데이터 준비) KOSPI 지수와 개별 주식별로 일별로 두 가지 종류의 데이터를 생성하시오. 다음 아래의 2개문항을 실시하시오.
 # [1.1] KOSPI 지수와 개별 주식별로 일별로 다음 종가(Close) 와 수익률(%)의 두 가지 종류의 데이터를 생성하시오. 
 
-# 문제1의 필요 라이브러리 선언
-import pandas_datareader.data as web  # 야후 Finance로 계속 시도하였으나 에러만 발생하는 관계로 Naver Finance로 대체합니다.
-                                      # 참고 : https://pandas-datareader.readthedocs.io/en/latest/remote_data.html
+# [1.1.1] 코스피 - 종가&수익률 출력
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
+from sklearn.linear_model import LinearRegression
+import FinanceDataReader as fdr
 
-# 1.1.1. 코스피지수
+print("[1.1.1] 코스피 - 종가&수익률 출력")
+temp_kospi = fdr.DataReader('KS11', '2021') #temp_kospi : 코스피 정보를 임시 보관.
+KOSPI= pd.DataFrame()
+KOSPI['Close']=temp_kospi['Close']          # Close(종가) 추가.
+KOSPI['Yield']= 100 * (temp_kospi['Close']/temp_kospi['Close']-1) #수익률(Yield) : rt = 100 × ln(Closet/Closet−1). 
 
-#1.1.2. 임의의 주식 출력
-#타겟 
+print(KOSPI)
+print("----------------------------")
 
+# 참고사이트 
+# https://post.naver.com/viewer/postView.nhn?volumeNo=28170053&memberNo=21815
 
+#------------------------------------------------------
+#1.1.2. 임의의 주식(삼성전자)  - 종가&수익률 출력
+print("[1.1.1] 임의의 주식 - 종가&수익률 출력")
+temp_samsung = fdr.DataReader('005930','2021')#[['Close'] ] #2021년 전체를 적용
+SAMSUNG= pd.DataFrame()
+SAMSUNG['Close']=temp_samsung['Close']          # Close(종가) 추가.
+SAMSUNG['Yield']= 100 * (temp_samsung['Close']/temp_samsung['Close']-1) #수익률(Yield) : rt = 100 × ln(Closet/Closet−1). 
 
-Indf = web.DataReader('005930', 'naver', start='2019-09-10', end='2019-10-09')
-
+print(SAMSUNG)
+print("----------------------------")
+#samsung
 
 
 # [1.1.2] 개별주식 지수- 일별로 다음 종가(Close) 와 수익률(%)의 두 가지 종류의 데이터를 생성하시오. 
@@ -56,90 +73,28 @@ Indf = web.DataReader('005930', 'naver', start='2019-09-10', end='2019-10-09')
 #        | 거래일자 |  KOSPI 지수의 종가(Close) | 수익률(%)
 #
 #       * 수익률은 다음 공식으로 계산하시오 : rt = 100 × ln(Closet/Closet−1). 
-# [1.2] KOSPI 지수와 임의의 한 주식을 선택하여 결과를 출력하시오.
-
-remove_list=[]
-
-import os.path 
-
-stocks=pd.DataFrame()
-for krx_item in krx_list:
-  filename=f"krx/{krx_item}.csv"
-  status=True
-  if os.path.isfile(filename):
-    tmp=pd.read_csv(f"krx/{krx_item}.csv",parse_dates=True) 
-    if ('Close' in tmp.columns) and ('Date' in tmp.columns):
-      tmp.set_index(tmp['Date'],inplace=True,drop=False) 
-      tmp_close=tmp['Close'].rename(krx_item) 
-      stocks=pd.concat([stocks,tmp_close],axis=1,sort=True) 
-      status=False
-
-  if status:
-    remove_list.append(krx_item)
-
-for remove_item in remove_list: 
-    krx_list.remove(remove_item)
-
-stocks = stocks.loc[:,~stocks.columns.duplicated()];
-
-# 개별 주식들 close
-stocks_close = stocks
-
-# 개별 주식들의 return. log(T시점 종가 / T-1시점 종가)
-with np.errstate(divide='ignore'):
-    stocks_return = 100 * np.log((stocks_close / stocks_close.shift(1)).astype('float'))
-
-# 코스피 close
-kospi = pdr.DataReader('^KS11', 'yahoo', default_start, default_end) #KOSPI
-kospi.index = pd.to_datetime(kospi.index).strftime("%Y-%m-%d")  # 기본 format이 time까지 잡혀서 reformat
-kospi_close = kospi['Close']
-kospi_return = 100 * np.log(kospi_close / kospi_close.shift(1))
+# [1.2] KOSPI 지수와 임의의 한 주식을 선택하여 결과를 출력하시오. 
 
 
 
+# 이외 참고한 사이트 목록
+# https://pandas-datareader.readthedocs.io/en/latest/remote_data.html
+# https://m.blog.naver.com/freed0om/221981429329
+# https://colab.research.google.com/github/corazzon/finance-data-analysis/blob/main/2.1%20FinanceDataReader%EB%A5%BC%20%ED%86%B5%ED%95%9C%20%EC%83%81%EC%9E%A5%EC%A2%85%EB%AA%A9%20%EC%A0%84%EC%B2%B4%20%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0-output.ipynb
+# https://blog.naver.com/PostView.nhn?blogId=nackji80&logNo=222318657325&parentCategoryNo=&categoryNo=28&viewDate=&isShowPopularPosts=true&from=search
 
 
-stocks_return
 
-# BUG. 몇몇 날짜는 krx.stock 값은 없고 kospi 값만 있음.
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
-# ks = set(kospi.index.strftime("%Y-%m-%d"))
-# # print(ks)
-# ss = set(stocks.index)
-# # print(ss)
-# print(sorted(list(ss - ks)))
+from sklearn.linear_model import LinearRegression
+import FinanceDataReader as fdr
 
-stocks_close
+#-------------------------------------------------------------------------------------------------------------------------------
+# [문제 2] (모멘텀 계산) 개별 주식의 Close를 활용하여 아래의 2개 사항을 수행하시오.
+# [2.1] 1개월(23일,1m), 3개월 (65일, 3m), 6개월(130일, 6m), 9개월(190일, 9m), 12개월(253일, 12m) 등의 모멘텀을 계산하시오. 
+# [2.2] KOSPI 지수와 임의의 한 주식을 선택하여 결과를 출력하시오.
 
-"""코스피"""
-
-# Get data as dataframe(['Close', 'Lagged Close', 'Return']) of KOSPI or random stock.
-# Default Date : 2010.01.04 ~ 2020.11.30
-
-def getStockData (ticker, start=None, end=None) :
-  # Setting default values for start day and end day
-  if start is None :
-    start = default_start
-  if end is None :
-    end = default_end
-
-  start = start.strftime("%Y-%m-%d")
-  end = end.strftime("%Y-%m-%d")  
-
-  df = pd.DataFrame(columns=['Close', 'Lagged Close', 'Return'])
-
-  if ticker == 'kospi' :
-    df['Close'] = kospi['Close']
-    df['Lagged Close'] = kospi['Close'].shift(1)
-  else :
-    try : 
-      df['Close'] = stocks_close[ticker]
-      df['Lagged Close'] = stocks_close[ticker].shift(1)
-    except ValueError :
-      return df
-  
-  df['Return'] = 100 * np.log( df['Close'] / df['Lagged Close'] )
-
-  return df.loc[start:end]
-
-문제 1.
+#
