@@ -8,6 +8,7 @@ Original file is located at
 """
 
 #책 페이지 2장-45페이지
+#str 타입문자 → datetime로 변환
 import datetime
 format = '%Y-%m-%d %H:%M:%S'
 
@@ -16,3 +17,9 @@ datetime_dt = datetime.datetime.strptime(datetime_str, format)
 
 print(type(datetime_dt))
 print(datetime_dt)
+
+#책 페이지 2장-45페이지
+#datetime →str 타입문자로 변환
+datetime_str = datetime_dt.strftime('%Y-%m-%d %H:%M:%S')
+print(type(datetime_str))
+print(datetime_str)
