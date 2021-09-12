@@ -23,3 +23,10 @@ print(datetime_dt)
 datetime_str = datetime_dt.strftime('%Y-%m-%d %H:%M:%S')
 print(type(datetime_str))
 print(datetime_str)
+
+#48페이지
+#str 타입읜 ISO 8601 형식에 맞춰서 사용해야 합니다.
+import numpy as np
+np.datetime64('2019-01-01')
+
+numpy.datetime64('2019-01-01')
