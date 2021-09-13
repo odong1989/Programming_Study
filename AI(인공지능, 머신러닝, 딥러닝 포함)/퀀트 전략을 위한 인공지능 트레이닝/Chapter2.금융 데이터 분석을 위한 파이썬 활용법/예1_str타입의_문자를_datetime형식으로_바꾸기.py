@@ -30,3 +30,8 @@ import numpy as np
 np.datetime64('2019-01-01')
 
 numpy.datetime64('2019-01-01')
+
+import numpy as np
+print( np.datetime64(1000,'ns') )
+print( np.datetime64(10000,'D') )
+print( np.datetime64(10000000,'s') )
