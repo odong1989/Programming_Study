@@ -35,3 +35,7 @@ import numpy as np
 print( np.datetime64(1000,'ns') )
 print( np.datetime64(10000,'D') )
 print( np.datetime64(10000000,'s') )
+
+np.array(['2007-07-13','2006-01-13','2010-08-13'],
+        dtype='datetiem64[D]')
+
