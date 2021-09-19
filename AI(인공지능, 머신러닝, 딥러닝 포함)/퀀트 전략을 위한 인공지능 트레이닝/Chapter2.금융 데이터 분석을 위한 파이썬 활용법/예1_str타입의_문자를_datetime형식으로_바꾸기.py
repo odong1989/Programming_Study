@@ -39,3 +39,5 @@ print( np.datetime64(10000000,'s') )
 np.array(['2007-07-13','2006-01-13','2010-08-13'],
         dtype='datetiem64[D]')
 
+#49페이지
+np.arange('2005-02', '2005-03', dtype='datetime64{D]')
