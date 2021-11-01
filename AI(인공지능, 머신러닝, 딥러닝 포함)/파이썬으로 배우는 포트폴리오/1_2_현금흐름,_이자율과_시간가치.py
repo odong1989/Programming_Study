@@ -50,3 +50,57 @@ r = 0.05
 #r/n은 이자 횟수별 이자율을 계산.(**는 제곱연산자. n을 제곱연산한다.)
 s_compound = a*(1+(r/n) ) **n #단리의 경우 : s_simple = a*(1+r*n)
 print(s_compound)
+
+#연속복리
+#연속복리 공식 : 원금 * e^r
+#복리 횟수가 늘어날수록, 값은 어느값(오일러상수를 뜻함)에 근접하게 됨을 알 수 있다.
+
+#파이선의 수학모듈인 math에서는 오일러상수e를 제공한다.
+import math
+
+#앞서 살펴본 코드와 같이 연속복리에 따른 원금을 계산한다.
+#원금 : amount
+#이자율 : rate
+#기간 : n 
+a=1# amount = 1
+r=1.0 #rate = 1.0
+
+#기간이 1인 경우(1년 복리)
+n=1
+c_compound = a*(1+r/n)**n
+print(c_compound)
+
+#기간이 2인 경우(6개월 복리)
+n=2
+c_compound = a*(1+r/n)**n
+print(c_compound)
+
+#기간이 4인 경우(분기별 복리)
+n=4
+c_compound = a*(1+r/n)**n
+print(c_compound)
+
+#기간이 12인 경우(월 복리)
+n=12
+c_compound = a*(1+r/n)**n
+print(c_compound)
+
+#기간이 52인 경우(매주 복리)
+n=52
+c_compound = a*(1+r/n)**n
+print(c_compound)
+
+#기간이 365인 경우(매일 복리)
+n=365
+c_compound = a*(1+r/n)**n
+print(c_compound)
+
+#기간이 8760인 경우(매시간 복리)
+n=8760
+c_compound = a*(1+r/n)**n
+print(c_compound)
+
+#기간이 525600인 경우(매초 복리)
+n=525600
+c_compound = a*(1+r/n)**n
+print(c_compound)
