@@ -7,6 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1UZNby9CyddjYCzcOFeXCYnozedGB5TK_
 """
 
+#1.3.1. NPV와 IRR
+
 # cashflows : 현금흐름을 저장
 # i : 횟수
 # r : 이자율
@@ -41,3 +43,22 @@ r= 0.015
 #npv함수로 순현재가치를 계산한다.
 npv =sp.npv(r, cashflows)
 print(npv)
+
+#1.3.2. IRR
+
+#scipy 라이브러리 임포트
+import scipy as sp
+
+#현금흐름을 cashflows 리스트에 저장한다.
+cashflows = [-70000, 12000, 15000, 18000, 21000, 26000 ]
+
+#scipy 라이브러리의 IRR함수를 사용하여 내부수익률을 계산한다.
+irr = sp.irr(cashflows)
+
+#구한 IRR을 npv의 할인율로 사용해 NPV를 구한다
+#IRR이 정확한다면 NPV는 0이다.
+npv = sp.npv(irr, cashflows )
+
+#결과를 출력한다. 결과는 문자열의 서식기능을 이용한다.
+#format : 문자열의 출력서식을 변경하는 문자열 함수.
+print('IRR{0:.1%} makes NPV{1:.2%}'.format(irr, npv))
