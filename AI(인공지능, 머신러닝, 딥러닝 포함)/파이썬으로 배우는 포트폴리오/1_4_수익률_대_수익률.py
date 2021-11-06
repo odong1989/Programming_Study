@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1pjrrbOdMEnGnU67WMoxCvb7bHaf3j9uy
 """
 
-#각 기간별 수익률로 평균을 구하는 코드
+#각 기간별 수익률로 평균을 구하는 코드(직접 일일이 작성시)
 
 #기간별 수익률을 returns 리스트에 저장한다.
 returns = [0.1, 0.06, 0.05 ]
@@ -17,7 +17,7 @@ sumOfReturn =0.0
 
 #평균을 저장할 변수를 준비한다
 arimean = 0.0
-geomean = 0,0
+geomean = 0.0
 
 #기간별 수익률의 데이터 개수를 구한다
 n = len(returns)
@@ -29,3 +29,22 @@ for r in returns:
 
 arimean = sumOfReturn /3
 print( 'AriMean is {:.2%}'.format(arimean) )
+
+#각 기간별 수익률로 평균을 구하는 코드(파이썬의 sum함수로 실시)
+arimean = sum(returns)/3
+print('AriMean is {:.2%}'.format(arimean))
+
+#기하평균을 구하는 코드
+
+#returns 리스트를 for 루프로 반복한다. 
+#반복하는 동안 각 수익률을 변수 r로 받는다.
+for r in returns :
+    geomean = geomean * (1+r)
+
+#기간 수익률로 변환한다
+geomean = geomean ** (1/n) - 1
+
+#기하평균을 출력한다.
+#문자열의 포맷(format)을 이용하여 출력양식을 만든다.
+#{}는 geomean 변수의 출력 위치인데, 그 안의 :.2%는 소수점 둘째 자리(.2)로 백분율(%)을 표현하라는 의미이다.
+print('Geomean is {:.2}'.format(geomean))
