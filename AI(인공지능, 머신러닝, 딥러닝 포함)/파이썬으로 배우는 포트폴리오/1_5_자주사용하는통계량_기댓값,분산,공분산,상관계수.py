@@ -7,6 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1B0jgz46jvrYxuR72t_szOkVDjPlRoAl-
 """
 
+#1.5.1.평균과 기댓값
+
 #산술평균-(1)파이썬의 표준함수로 처리.
 nums =[1,2,3,4,5,6] #nums 리스트에 값을 저장.
 print(sum(nums) / len(nums ) ) #sum함수로 합계를, len함수로 데이터의 개수를 구한다.
@@ -37,3 +39,14 @@ ex = sum(c*p for c,p in zip(case, prob))
 
 #결과출력
 print(ex)
+
+#여담-zip함수 설명
+#  zip   : 여러 개의 리스트를 묶어 하나의 리스트처럼 사용하게 만들어주는 함수.
+# 기대값 : case와 prob리스트 두 개를 하나로 묶어 반복하면서 c와p를 곱한뒤 더한 값.
+
+a = [1,2,3] #리스트a에 1,2,3을 저장한다.
+b = [4,5,6] #리스트b에 4,5,6을 저장한다.
+
+for ab in zip(a,b): #두 개의 리스트를 하나로 묶어 루프를 돌린다.
+    print(ab)
+
