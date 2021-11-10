@@ -50,3 +50,34 @@ b = [4,5,6] #리스트b에 4,5,6을 저장한다.
 for ab in zip(a,b): #두 개의 리스트를 하나로 묶어 루프를 돌린다.
     print(ab)
 
+#1.5.2. 이동평균
+#책의 '표1-8 일자별 이동평균의 계산흐름'의 이동평균 값들을 리스트저장.
+
+#이동평균
+#주가를 prices 리스트에 저장한다.
+prices =[ 44800, 44850, 44600,43750, 44000, 44350, 45350, 45500, 45700 ]
+
+#5일 이동평균
+n =5
+
+#prices의 n번째 항목부터 마지막 항목까지 반복.
+for p in prices[ n: ]:
+    #항목 p의 index를 마지막 인덱스로 지정한다.
+    end_index = prices.index(p)
+    #마지막 인덱스에서 n만큼 앞에 있는 시작 인덱스를 정한다.
+    begin_index = end_index - n
+
+#end_index와 begin_index를 계산해 가져올 위치를 계산한다.
+print(begin_index, end_index)
+
+#계산한 end_index와 begin_index를 갖고 prices 리스트에서 다섯 개 항목을 확인한다.
+for p in prices[n:]:
+    end_index = prices.index(p)
+    begin_index = end_index - n
+    print( prices[begin_index : end_index ] )
+
+#다섯 개씩 가져와서 sum()함수로 합계를 구하고, n으로 나눠 이동평균을 계산한다.
+for p in prices[ n: ]:
+    end_index = prices.index(p)
+    begin_index = end_index -n
+    print(sum(prices[begin_index : end_index])/n )
