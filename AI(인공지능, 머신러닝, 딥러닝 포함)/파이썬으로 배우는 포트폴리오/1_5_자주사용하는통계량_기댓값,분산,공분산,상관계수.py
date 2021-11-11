@@ -81,3 +81,21 @@ for p in prices[ n: ]:
     end_index = prices.index(p)
     begin_index = end_index -n
     print(sum(prices[begin_index : end_index])/n )
+
+#1.5.3. 가중(산술)평균
+
+#평가 점수와 평가 비중을 scores와 weight리스트에 저장한다.
+scores =[82, 90, 76]
+weight = [0.2, 0.35, 0,45]
+
+#scores와 weight 리스트를 zip함수로 묶어 for 루프로 반복한다.
+#wgt_avg : 합계를 저장할 변수
+wgt_avg = 0.0
+
+#반복하는 동안 변수 s와 w에 저장하고 곱셈의 결과를 합한다.
+for s,w in zip(scores, weight) :
+    wgt_avg = wgt_avg + s*w
+
+#결과를 출력한다.
+print (wgt_avg)
+
