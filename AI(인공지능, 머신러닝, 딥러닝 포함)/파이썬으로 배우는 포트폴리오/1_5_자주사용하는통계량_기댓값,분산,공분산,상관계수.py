@@ -123,3 +123,17 @@ for n in nums :
     var = sumsquare / ( len(nums) -1 )
 
 print(var)
+
+#편차 제곱함을 데이터 개수로 나누고 결과를 출력한다.
+var - sumsquare / (len (nums)-1 )
+print(var)
+
+#sqrt()함수 : 표준편차를 구하기위해 팔요함.
+import math
+stdev = math.sqrt(var)
+print(stdev)
+
+#1.5.5.정규분포에서 표준편차와 평균
+#정규분포는 표준편차와 평균에 밀접한 관계를 갖습니다.
+#정규분포는 종(뒤집어진 U형태)모양의 그래프를 그립니다.
+#평균에서 +-1 표준편차내에서 정균부포 면적의 대략 68%를 차지한다.
