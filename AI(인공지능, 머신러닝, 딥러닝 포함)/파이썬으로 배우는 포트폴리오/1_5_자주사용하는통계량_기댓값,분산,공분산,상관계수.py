@@ -149,3 +149,68 @@ x_axis = np.arange(-10, 10, 0.001 )
 
 #평균=0, 표준편차 = 2.0인 정규분포를 만든다
 plt.plot(x_axis, norm.pdf(x_axis, 0, 2))
+
+#1,5,7 공분산과 상관계수
+#(1.5.6은 코드없어서 생략)
+
+#공분산, 상관계수 : 두 변수의 상관관계룰 나타내는 척도.
+#상관계수 계산을 프로그래밍화.
+
+#상관계수를 계산하기 위해 필요한 함수들
+import math
+
+#평균을 계산하는 함수
+def mean(x):
+    return sum(x)/len(x)
+
+#두 리스트 곱의 합계, 즉 엑셀의 SUMPRODUCT()함수와 같다
+def sum_of_product(xs,ys):
+    return sum(x*y for x, y in zip(xs,ys) )
+
+#제곱합을 계산하는 함수
+def sum_of_squares(v):
+    return sum_of_product(v,v)
+
+#편차를 계산하는 함수
+def deviation(xs):
+    x_mean =mean(xs)
+    return [ x - x_mean for x in xs ]
+
+#분산을 계산하는 함수
+def variance(x):
+    n = len(x)
+    deviations = deviation(x)
+    return sum_of_squares(deviations) / (n-1)
+
+
+#공분산을 계산하는 함수
+def covariance(x,y):
+    n = len(x)
+    return sum_of_product(deviation(x), deviation(y)) / (n-1)
+
+#표준편차를 계산하는 함수
+def standard_deviation(x):
+    return math.sqrt(variance(x) ) #math 모듈의 제곱근 함수 sqrt()를 사용
+
+
+#상관계수를 계산하는 함수
+def correlation(xs,ys):
+    stdev_x = standard_deviation(xs)
+    stdev_y = standard_deviation(ys)
+    if stdev_x > 0 and stdev_y > 0 :
+        return covariance(xs,ys) / (stdev_x*stdev_y)
+    else :
+        return 0 #편차가 존재하지 않는다면 상관관계는 0
+
+#x와y리스트와 correlation() 함수를 사용해 상관관계를 계산
+x = [41,43,38,37]
+y = [61, 63, 56, 55]
+print(correlation(x,y) )
+
+x = [35,45, 35,34]
+y = [61,63,64,67]
+print(correlation(x,y) )
+
+x = [35,45,45,34]
+y = [65,66,64,68]
+print(correlation(x,y))
