@@ -31,8 +31,7 @@ Original file is located at
 
 #2.3.5. 최대낙폭
 import numpy as np
-np.maximum.accumulate(np.array([11,12,13,20,19,18,17,18,23,21])))
-array([11,12,13,20,20,20,20,20,23,23])
+np.maximum.accumulate(np.array([11,12,13,20,19,18,17,18,23,21]))
 
 #cummax라는 이름의 함수를 선언한다. 이 함수는 nums 매개변수를 받는다.
 def cummax(nums):
@@ -41,10 +40,42 @@ def cummax(nums):
     max =0
 
 #nums를 순회하면서 item을 현재 최고값과 비교한다.
-#item > max 이명 최고값 max를 업데이트 한다.
+#item > max 이면 최고값 max를 업데이트 한다.
 #그리고 if문의 결과와 상관없이 최고값을 cum에 추가한다.
 for item in nums :
     if item>max :
         max = item
     cum.append(max)
 return cum
+
+#자산 A 가치를 리스트에 저장한다
+values=[100, 120, 130, 100, 65, 80, 100, 120, 140, 160]
+
+#자산 A 가치(values)에서 for 루프로 반복하면 cummax()로 구한 최고값을 뺀다 (x-y)
+#zip 함수는 3장에서 자세히 설명하지만 두 개의 변수를 묶어서(zip) 마치 하나의 변수처럼 사용하는 방법이다.
+drawdown = [x - y for x,y in zip(values, cummax(values)) ]
+
+#drawdown에서 최솟값이 저장된 인덱스(위치)를 구한다.
+idx_lower = drawdown.index(min(drawdown))
+
+#자산 A 가치(values)의 인덱스 0부터 idx_lower까지 데이터 중 가장 큰 값이 저장된 위치를 구한다.
+idx_upper = values.index(max(values[:idx_lower ] ) )
+
+#MDD공식에 따라 계산해 출력한다.
+print( (values[idx_lower] - values[idx_upper]) / values[idx_upper] )
+
+
+#numpy를 활용하여 MDD 계산
+import numpy as np
+
+#mdd함수는 x를 매개변수로 받아 numpy의 array 객체로 변환한다.
+#이후 계산할 값을 가진 인덱스(위치)를 찾아 MDD를 계산한다
+
+def mdd(x):
+    arr = np.array(x)
+    idx_lower = np.argmin( arr - np.maximum.accumulate(arr))
+    idx_upper = np.argmax( arr[:idx_lower ])
+    retrun( arr [idx_lower ] - arr[idx_upper]) / arr[idx_upper]
+
+#앞서 구한 values를 갖고 mdd를 계산한다.
+print(mdd(values))
