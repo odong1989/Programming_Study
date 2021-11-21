@@ -19,3 +19,11 @@ def f(x):
     return y
 
 print( f(66) )
+
+#6.2외부 모듈 사용
+import bs4 #bs4이라는 외부 모듈을 가져온다
+
+#urllib라는 라이브러리 내의 request 모듈에 있는 urlopen 함수를 가져온다
+from urllib.request import urlopen
+
+import pandas as pd #pandas라는 모듈을 pd라는 이름으로 가져온다
