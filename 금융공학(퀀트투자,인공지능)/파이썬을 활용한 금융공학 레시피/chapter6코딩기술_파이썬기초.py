@@ -27,3 +27,44 @@ import bs4 #bs4이라는 외부 모듈을 가져온다
 from urllib.request import urlopen
 
 import pandas as pd #pandas라는 모듈을 pd라는 이름으로 가져온다
+
+#6.3. 빅대이터의 시작 뷰티플 수프
+#뷰티플수프(Beautiful Soup)
+# : 인터넷상애서 데이터를 수집할 때 유용하게 사용되는 파이썬 패키지.
+#  (1) pull : HTML, XML으로 작성된 파일을 가져오기
+#  (2) navigate&search : 내용을 검색함.
+#  (3) parse : 분석
+
+# 예제 사이트 링크 : http://book.finterstellar.com/sample.html
+
+# (1)pull 실시
+# html_doc : HTML소스코드를 복사하여 분석에 활용하기 위한 변수.
+#            페이지소스코드보기(ctrl+u)를 직접 복사하여 붙여넣기 한다.
+
+html_doc  = """
+<html><head><title>The Office</title></head>
+<body>
+<p class="title"><b>The Office</b></p>
+<p class="story">In my office, there are four officers,
+<a href="http://example.com/YW" class="member">YW</a>,
+<a href="http://example.com/JK" class="member">JK</a>,
+<a href="http://example.com/YJ" class="member">YJ</a> and
+<a href="http://example.com/KS" class="member">KS</a>
+.</p>
+<p class="story">...</p>
+"""
+
+# (2)navigate&search(검색), (3)parse(분석)을 실시위해 BeatifulSoup를 임포트.
+from bs4 import BeautifulSoup
+
+#soup : html_doc을 해석(parsing)하여 저장하기 위한 변수 
+
+soup = BeautifulSoup(html_doc, 'html.parser')
+  #뷰티플 수프 함수를 활용하여 html_doc을 해석하여 soup에 저장.
+  #사용자는 소스내의 태그 단위로 정보를 컨트롤 할 수 있다.
+  #(뷰티플 수프가 파싱을 할 때는 html 코드를 분석하여 코드 안에 담겨 있는 태그별로 서브변수를 만들어 내용을 저장한다.)
+
+print(soup.prettify()) #prettify()함수:html코드를 태그 단위별로 줄바꿈을 해준다.
+
+
+
