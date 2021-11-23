@@ -41,6 +41,7 @@ import pandas as pd #pandas라는 모듈을 pd라는 이름으로 가져온다
 # html_doc : HTML소스코드를 복사하여 분석에 활용하기 위한 변수.
 #            페이지소스코드보기(ctrl+u)를 직접 복사하여 붙여넣기 한다.
 
+#"""안의 html코드는 페이지소스코드를 복사해온것이다.
 html_doc  = """
 <html><head><title>The Office</title></head>
 <body>
@@ -66,5 +67,25 @@ soup = BeautifulSoup(html_doc, 'html.parser')
 
 print(soup.prettify()) #prettify()함수:html코드를 태그 단위별로 줄바꿈을 해준다.
 
+#6.3. 빅대이터의 시작 뷰티플 수프(계속)
+#소스코드중에서 HTML태그를 활용하여 원하는 값만 가져와보기
 
+#<title>태그를 통째로 가져오는 예제
+soup.title #결과:<title>The Office</title>
+
+#<title>태그내의 제목텍스트만 뽑아보기
+soup.title.text #결과:'The Office'
+
+#팀원들의 이름(YW,JK, YJ, KS) 텍스트로 뽑아보기
+soup.a #1개의 a 태그를 통째로 가져온다.
+
+soup.find_all('a') #find_all()메소드를 통해 a태그를 모조리 가져온다
+                   #단, find_all().text로는 텍스트만 뽑을 수는 없다(결과값이 리스트형태이기 때문.)
+
+#태그를 제외한 팀원들의 이름만 뽑기위해서는 리스트를 다루는 방법을 활용해야 한다.
+soup.find_all('a')[2] #3번째 리스트의 a태그를 통째로 뽑아낸다.(파이썬의 리스트도 자바처럼 0,1,2,3 식으로 센다.)
+
+member =soup.find_all('a')
+for m in member :
+    print(m.text)
 
