@@ -38,3 +38,72 @@ source
 import bs4
 source = bs4.BeautifulSoup(source,'lxml')
 print(source.prettify())
+
+#XPath통해 필요한 데이터의 위치 편하게 찾기(필요한 데이터의 경로 찾기)
+
+td = source.find_all('td')
+#<td>태그에 필요한 주식정보(date, number1(당일 종가) 등)가 있기에 td를 확인해 보는 것.
+len(td) #td의 갯수를 확인(54개임을 알 수 있다,)
+#위처럼 54개나 되는 경우 일일이 확인하기에는 어려움이 많다.
+#그래서 'XPath'를 통해 원하는 데이터의 위치를 찾고자 한다.
+
+
+#XPach(XML Path Language) : 웹사이트(또는 XML문서)에 있는 각 항목의 주소를 
+#                           문서에 포함된 태그를 조합한 경로 형태로 표현하는 언어.
+
+#웹브라우저에서 데이터의 XPath 확인 방법(크롬 기준, 책 107페이지 참고)
+#(사전준비)개발자 모드등으로 웹페이지의 소스코드를 볼 수 있도록 한다.
+#(1)스크린 우측에서 음영으로 선택된 부분에 마우스를 갖다 댄 다음
+#(2)오른쪽 클릭하면 나오는 메뉴에서 Copy를 선택한다.
+#(3)Copy XPath를 선택한다. 그러면 아래와 같은 형식으로 나오게 된다.
+#   /html/body/div/table[1]/tbody/tr[3]/td[1]
+#    의미:1번째 테이블의 tbody에서 3번째 행의 1열에 있다.
+
+#find(), 또는 find_all()통해 데이터 가져오기
+#XPath를 통해 좌표를 확인했다면 이제 find(), find_all()통해 데이터를 가져올 수 있다.
+
+#find(태그명) : 가져올 값이 1개인 경우 활용.
+#find_all(태그명)[순서] : 가져올 값이 2개 이상시 활용.
+
+#거래일(date) 정보를 저장한 td에 접근하여 데이터 가져오기.
+source.find_all('table')[0].find_all('tr')[2].find_all('td')[0]
+
+#가져올 데이터들이 class명으로 묶여 있다면 태그를 생략할 수 있다,
+#한 마디로 'html 태그들이 걸러진 순수한 정보만 받을 수 있다'는 것이다.
+d = source.find_all('td',class_='date')[0].text
+d
+
+#가져온 데이터를 파이썬 포맷에 맞추기
+
+#d = source.find_all('td',class_='date')[0].text를 통해 가져온 날짜 데이터는 파이썬과 날짜형식이 일치하지 않는다.
+# 네이버의 날짜 형식(문자열) : '2021.11.26'                 
+# 파이썬의 날짜 형식(date형) : datetime.date(2021, 11, 26) 
+
+# 이처럼 가져온 데이터가 파이썬의 자료형과 맞지 않는 경우가 있기에 관련된 파이썬의 라이브러리로 형식을 맞춰 바꿔준다.
+# 본 예제의 경우 '날짜' 형식이므로 파이썬의 datetime 라이브러리를 활용하여 date형식으로 바꿔본다.
+
+#1.관련 라이브러리 임포트
+import datetime as dt
+
+#2.문자열 상태인 정보를 split()함수를 통해 분해한다.
+#사용법 : 문자열.split(구분자)
+yyyy = int( d.split('.')[0] )
+mm = int(d.split('.')[1] )
+dd = int(d.split('.')[2] )
+
+#3.분해된 정보를 재구성 한다.
+this_date = dt.date(yyyy, mm, dd)
+this_date
+
+#4.함수를 작성한다. 
+#  함수를 통해 분해&재구성 작업을 자동화 시키는 것이다.
+#  어렵게 생각할 필요없다. 2,3과정을 정상작동 확인하면 이를 그대로 복사&붙여넣기하는 급이다.
+
+def date_format(d):
+    d = str(d).replace('-', '.')
+    yyyy = int(d.split('.')[0] )
+    mm = int(d.split('.')[1] )
+    dd = int(d.split('.')[2] )
+
+    this_date = dt.date(yyyy, mm , dd)
+    return this_date
