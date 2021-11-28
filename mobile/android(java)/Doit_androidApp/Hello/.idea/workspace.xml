@@ -27,7 +27,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="086a206f-6588-401d-bbbd-228922888840" name="Default Changelist" comment="" />
+    <list default="true" id="086a206f-6588-401d-bbbd-228922888840" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,6 +53,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Blind_app_retrofit2" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RunManager">
@@ -143,6 +148,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="286" y="138" key="#PSD" timestamp="1636418387423">
+      <screen x="0" y="0" width="1536" height="783" />
+    </state>
+    <state x="286" y="138" key="#PSD/0.0.1536.783/1920.0.1536.824@0.0.1536.783" timestamp="1636418387423" />
     <state x="93" y="93" width="1350" height="598" key="AVDManager" timestamp="1636274995555">
       <screen x="0" y="0" width="1536" height="783" />
     </state>
