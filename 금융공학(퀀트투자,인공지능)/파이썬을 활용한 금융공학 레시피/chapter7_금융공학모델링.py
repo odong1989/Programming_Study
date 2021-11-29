@@ -74,6 +74,7 @@ d = source.find_all('td',class_='date')[0].text
 d
 
 #가져온 데이터를 파이썬 포맷에 맞추기
+#예제1 : 날짜 데이터 가져오기
 
 #d = source.find_all('td',class_='date')[0].text를 통해 가져온 날짜 데이터는 파이썬과 날짜형식이 일치하지 않는다.
 # 네이버의 날짜 형식(문자열) : '2021.11.26'                 
@@ -107,3 +108,11 @@ def date_format(d):
 
     this_date = dt.date(yyyy, mm , dd)
     return this_date
+
+#가져온 데이터를 파이썬 포맷에 맞추기
+#예제2 : 지수 데이터 가져오기(해당 일자의 종가지수 가져오기)
+
+this_close = source.find_all('tr')[2].find_all('td')[1].text
+this_close = this_close.replace(',','') #쉼표(,) 제거
+this_close = float(this_close)
+this_close
