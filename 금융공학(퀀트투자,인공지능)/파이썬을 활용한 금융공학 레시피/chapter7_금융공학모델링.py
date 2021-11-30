@@ -122,3 +122,21 @@ this_close
 def historical_index_naver(index_cd, page_n=1, last_page=0):
 
     naver_index = 'http://finance.naver.com/sise/sise_index_day.nhn?code=' +index_cd + '&page=' + str(page_n)
+
+    source = urlopen(naver_index).read()        #지정한 페이지에서 코드 읽기
+    source = bs4.BeautifulSoup(Source, 'lxml')  #뷰티플 수프로 태그별로 코드 분류
+
+    dates = source.find_all('td', class_='date')        #<td class="date">태그에서 날짜 수집
+    prices = source.find_all('td', class_='number_1')    #<td class="number">태그에서 지수 수집
+
+    for n in range(len(dates)):
+
+        if dates[n].text.split('.')[0].isdigit():
+
+            #날짜 처리
+            this_date = dates[n].text
+            this_date = date_format(this_date)
+
+            #종가처리
+            
+            #114page
