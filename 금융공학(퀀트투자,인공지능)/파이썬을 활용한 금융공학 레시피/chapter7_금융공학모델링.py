@@ -116,3 +116,9 @@ this_close = source.find_all('tr')[2].find_all('td')[1].text
 this_close = this_close.replace(',','') #쉼표(,) 제거
 this_close = float(this_close)
 this_close
+
+#데이터 추출 기능을 함수로 만들기 (113~)
+
+def historical_index_naver(index_cd, page_n=1, last_page=0):
+
+    naver_index = 'http://finance.naver.com/sise/sise_index_day.nhn?code=' +index_cd + '&page=' + str(page_n)
