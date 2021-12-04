@@ -138,5 +138,23 @@ def historical_index_naver(index_cd, page_n=1, last_page=0):
             this_date = date_format(this_date)
 
             #종가처리
-            
-            #114page
+            this_close = prices[n*4].text       #prices 중 종가지수인 0,4,8....번째 데이터 추
+
+            this_close = this_close,replace(',','')
+            this_close = float(this_close)
+
+
+            #딕셔너리에 저장
+            historical_prices[this_date] = this_close
+
+    #페이지 내비게이션
+    if last_page == 0 :
+        last_page = source.find('td', class_='pgRR').find('a')['href']
+
+        #마지막 페이지 주소 추출
+        last_page = last_page.split('&')[1] # &뒤의 page=506 부분 추출.(숫자 506는 실시당일마다 달라질 수 있을 듯 함.)
+        last_page = last_page.split('=')[1] # '=' 뒤의 페이지 번호만 추출.
+        last_page = int(last_page)          # 숫자형 변수로 변환
+
+    #다음 페이지 호출
+    #115
