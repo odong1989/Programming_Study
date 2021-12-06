@@ -157,4 +157,6 @@ def historical_index_naver(index_cd, page_n=1, last_page=0):
         last_page = int(last_page)          # 숫자형 변수로 변환
 
     #다음 페이지 호출
-    #115
+    if page_n < last_page:
+        page_n = page_n+1
+        historical_index_naver(index_cd, start_date)
