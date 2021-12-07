@@ -160,3 +160,17 @@ def historical_index_naver(index_cd, page_n=1, last_page=0):
     if page_n < last_page:
         page_n = page_n+1
         historical_index_naver(index_cd, start_date)
+
+    return historical_prices
+
+
+def historical_index_naver(index_cd, start_date='', end_date='', page_n=1, last_page=0):
+
+if start_date : #start_date가 있으면
+    start_date = date_format(start_date)    #date 포맷으로 변환
+
+else:   #없으면
+    start_date = dt.date.today()    #오늘 날짜를 지정.
+if end_date:
+
+    #116page
