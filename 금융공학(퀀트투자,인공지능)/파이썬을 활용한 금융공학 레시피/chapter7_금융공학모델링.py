@@ -171,6 +171,27 @@ if start_date : #start_date가 있으면
 
 else:   #없으면
     start_date = dt.date.today()    #오늘 날짜를 지정.
-if end_date:
 
-    #116page
+if end_date:
+    end_date = date_format(end_date)
+else:
+    end_date = dt.date.today()
+
+if this_date <= end_date and this_date >= start_date:
+    #start_date와 end_date 사이에서 데이터 저장
+        #종가 처리
+        #관련 코드 생략되어 없음.
+
+    elif this_date < start_date:
+    #start_date 이전이면 함수 종료
+        return historical_prices
+
+def historical_index_naver(index_cd, start_date='', end_date='', page_n=1, last_page=0):
+    if start_date: #start_date가 있으면
+        start_date = date_format(start_date) #date 포맷으로 변환
+    else : #없으면
+        start_date = dt.date.today() #오늘 날짜를 지정
+    if end_date:
+        end_date = date_format(end_date)
+
+    #117page
