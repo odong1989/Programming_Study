@@ -193,5 +193,13 @@ def historical_index_naver(index_cd, start_date='', end_date='', page_n=1, last_
         start_date = dt.date.today() #오늘 날짜를 지정
     if end_date:
         end_date = date_format(end_date)
+    else : 
+        end_date = dt.date.today()
 
+
+    naver_index = 'http://finance.naver.com/sise/sise_index_day.nhn?code='
+                  + index_cd + '&page=' + str(page_n)
+
+    source = urlopen(naver_index).read()     #지정한 페이지에서 코드 읽기
+    source = bs4.BeatifulSoup(source,'lxml') #뷰티플 수프로 태그별로 코드 분류
     #117page
