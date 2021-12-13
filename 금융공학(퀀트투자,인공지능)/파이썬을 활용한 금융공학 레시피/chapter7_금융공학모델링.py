@@ -206,4 +206,27 @@ def historical_index_naver(index_cd, start_date='', end_date='', page_n=1, last_
     dates = source.find_all('td',class_='date')     # <td class = "date">태그에서 날짜 수집
     prices =source.find_all('td',class_='number_1') # <td class="number_1">태그에서 지수수집
 
-    #117page
+    for n in range(len(dates)):
+        
+        if dates[n].text.split('.').isdigit():
+
+            #날짜처리
+            this_date = dates[n].text
+            this_date = date_format(this_date)
+
+            if this_date <= end_date and this_date >= start_date:
+            #start_date와 end_date 사이에서 데이터 저장.
+                #종가처리
+                this_close = prices[n*4].text   #price 중 종가지수인 0,4,8...번째 데이터 추출.
+ 
+                this_close = this_close.replace(',','')
+                this_close = float(this_close)
+
+                #딕셔너리에 저장
+                historical_prices[this_date] = this_close
+
+        elif this_date < start_date:
+        #start_date 이전이면 함수 종료        
+            return historical_prices
+
+    #118page
