@@ -229,4 +229,19 @@ def historical_index_naver(index_cd, start_date='', end_date='', page_n=1, last_
         #start_date 이전이면 함수 종료        
             return historical_prices
 
-    #118page
+        if last_page == 0:
+            last_page = source.find('td', class='pgRR').find('a')['href']
+
+        #마지막 페이지 주소 추출
+            last_page = last_page.split('&')[1] # &뒤의 page=506부분 추출
+            last_page = last_page.split('=')[1] # '='뒤의 페이지 번호만 추출
+            last_page = int(last_page) #숫자형 변수로 변환.
+
+        # 다음 페이지 호출
+        if page_n < last_page:
+            page_n = page_n +1
+            historical_index_naver(index_cd, start_date, end_date, page_n, last_page)
+
+        return historical_prices
+
+#118page
