@@ -244,4 +244,8 @@ def historical_index_naver(index_cd, start_date='', end_date='', page_n=1, last_
 
         return historical_prices
 
+index_cd = 'KPI200'
+    historical_prices = dict()
+    historical_index_naver(index_cd, '2018-4-1', '2018-4-4')
+    historical_prices
 #118page
