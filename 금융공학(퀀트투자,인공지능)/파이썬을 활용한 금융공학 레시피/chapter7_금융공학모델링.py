@@ -248,4 +248,9 @@ index_cd = 'KPI200'
     historical_prices = dict()
     historical_index_naver(index_cd, '2018-4-1', '2018-4-4')
     historical_prices
-#118page
+
+#122page
+
+import pandas as pd
+from urllib.request import urlopen
+import json #해외지수는 json형태로 표출됨.
