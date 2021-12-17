@@ -253,4 +253,11 @@ index_cd = 'KPI200'
 
 import pandas as pd
 from urllib.request import urlopen
-import json #해외지수는 json형태로 표출됨.
+import json #해외지수는 json형태로 표출됨
+
+symbol = 'NII@NI225'
+page =1
+
+url ='https://finance.naver.com/word/worldDayListJson.nhn?symbol' +simbol+'&fdtc=0&page='+str(page)
+raw = urlopen(url)
+data == json.load(raw)
