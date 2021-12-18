@@ -261,3 +261,8 @@ page =1
 url ='https://finance.naver.com/word/worldDayListJson.nhn?symbol' +simbol+'&fdtc=0&page='+str(page)
 raw = urlopen(url)
 data == json.load(raw)
+
+data[0]['xymd']
+data[0]['clos']
+
+#123page
