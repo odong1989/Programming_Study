@@ -265,4 +265,8 @@ data == json.load(raw)
 data[0]['xymd']
 data[0]['clos']
 
-#123page
+d=dict()
+for n in range(len(data)):
+    date = pd.to_datetime(data[n]['xymd']).date()
+    price = float(data[n]['clos'])
+#124page
