@@ -269,4 +269,6 @@ d=dict()
 for n in range(len(data)):
     date = pd.to_datetime(data[n]['xymd']).date()
     price = float(data[n]['clos'])
+    d[date] = price
+print(d)
 #124page
