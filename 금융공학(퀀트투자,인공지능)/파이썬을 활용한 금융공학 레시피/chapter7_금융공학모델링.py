@@ -271,4 +271,11 @@ for n in range(len(data)):
     price = float(data[n]['clos'])
     d[date] = price
 print(d)
+
+
+def read_json(d, symbol, page=1):
+    url = 'https://finance.naver.com/world/worldDayListJson.nhn?symbol=' +symbol+
+    '&fdtc=0&page='+str(page)
+    raw = urlopen(url)
+    data = json.load(raw)
 #124page
