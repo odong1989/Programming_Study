@@ -278,4 +278,17 @@ def read_json(d, symbol, page=1):
     '&fdtc=0&page='+str(page)
     raw = urlopen(url)
     data = json.load(raw)
+
+    for n in range(len(data)):
+        date = pd.to_datetime(date[n]['xymd']).date()
+        price = float(data[n]['clos'])
+        d[date] = price
+
+
+    if len(data) == 10:
+        page +=1
+        read_json(d, symbol, page)
+
+    return(d)
+
 #124page
