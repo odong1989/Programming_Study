@@ -292,3 +292,9 @@ def read_json(d, symbol, page=1):
     return(d)
 
 #124page
+
+historical_index = pd.Series()
+historical_index = read_json(historical_index, symbol, page)
+
+
+#125p
