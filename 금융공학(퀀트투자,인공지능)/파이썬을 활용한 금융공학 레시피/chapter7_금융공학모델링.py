@@ -287,7 +287,7 @@ def read_json(d, symbol, page=1):
 
     if len(data) == 10:
         page +=1
-        read_json(d, symbol, page)
+        read_json(d, symbol, page) 
 
     return(d)
 
@@ -296,5 +296,11 @@ def read_json(d, symbol, page=1):
 historical_index = pd.Series()
 historical_index = read_json(historical_index, symbol, page)
 
+historical_index.head(3)
+
+indices = {
+    'SPI@SPX' : 'S&P 500',
+    'NAS@NDX' : 'Nasdaq 100',
+    'NII@NI225' : 'Nikkei 225'
 
 #125p
