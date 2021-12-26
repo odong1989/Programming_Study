@@ -304,3 +304,8 @@ indices = {
     'NII@NI225' : 'Nikkei 225'
 
 #125p
+
+historical_index = pd.Series()
+historical_index = read_json(historical_index, symbol, page)
+
+#126페이지
