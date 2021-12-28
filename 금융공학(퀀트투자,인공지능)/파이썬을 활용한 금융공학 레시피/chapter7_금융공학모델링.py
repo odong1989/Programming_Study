@@ -318,3 +318,13 @@ indices = {
 
 
 #126페이지
+
+historical_indices = dict()
+for key, value in indices.items():
+    print(key, value)
+    s = dict()
+    s = read_json(s, key, 1)
+    historical_indices[value] = s
+
+prices_df = pd.DataFrame(hisotical_indices)
+#127페이지
