@@ -327,4 +327,23 @@ for key, value in indices.items():
     historical_indices[value] = s
 
 prices_df = pd.DataFrame(hisotical_indices)
+
+def index_global(d, symbol, start_date='', end_date='', page=1):
+
+    end_date = date_format(end_date)
+    if start_date == '':
+        start_date = end_date - pd.DateOffset(months=1)
+    start_date = date_format(start_date)
+
+    url = 'https://finance.naber.com/world/worldDayListJson.nhn?symbol='+symbol+'&fdtc=0&page='str(page)
+    raw = urlopen(url)
+    data = json.load(raw)
+
+    if len(data)> 0:
+
+        for n in range(len(data)):
+            data = pd.to_datetime(data[n]['xymd']).date()
+
+            if data<= end_date and date>=start_date:
+                #start_date와 end_date 사이에서 데이터 저장
 #127페이지
