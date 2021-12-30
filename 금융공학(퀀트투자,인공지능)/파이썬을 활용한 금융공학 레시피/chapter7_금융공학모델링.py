@@ -346,4 +346,19 @@ def index_global(d, symbol, start_date='', end_date='', page=1):
 
             if data<= end_date and date>=start_date:
                 #start_date와 end_date 사이에서 데이터 저장
+
+                #종가처리
+                price=float(data[n]['clos'])
+                #딕셔너리에 저장
+                d[date] = price
+            elif date < start_date :
+                #start_date 이전이면 함수 종료
+                return (d)
+
+        if len(data) == 10:
+            page += 1
+            index_global(d, symbol, start_date, end_date, page)
+
+    return (d)
 #127페이지
+
