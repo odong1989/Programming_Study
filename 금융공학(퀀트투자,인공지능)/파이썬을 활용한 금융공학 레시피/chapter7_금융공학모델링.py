@@ -360,5 +360,19 @@ def index_global(d, symbol, start_date='', end_date='', page=1):
             index_global(d, symbol, start_date, end_date, page)
 
     return (d)
-#127페이지
+
+    historical_indices = dict()
+    start_date = '2019-01-01'
+    end_date = '2019-03-31'
+
+    for key, value in indices.items():
+        s = dict()
+        s = index_global(s, key, start_date)
+        historical_indices[value] = s
+    
+    prices_df = pd.DataFrame(historical_indices)
+
+#127,128페이지
+
+
 
