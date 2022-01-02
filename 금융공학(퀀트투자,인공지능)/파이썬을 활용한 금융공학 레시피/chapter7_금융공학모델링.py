@@ -374,5 +374,12 @@ def index_global(d, symbol, start_date='', end_date='', page=1):
 
 #127,128페이지
 
+#데이터프레임으로 여러 딕셔너리를 테이블 하나로 합치기
+index_cd = 'KPI200'
+historical_prices = dict()
+kospi200 = historical_index_naver(index_cd,'2017-1-1','2017-12-31')
 
+index_cd = 'SPI&SPX'
+historical_prices = dict()
+sp500 = index_global(historical_prices, index_cd, '2017-1-1','2017-12-31')
 
