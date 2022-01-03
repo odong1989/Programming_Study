@@ -382,15 +382,11 @@ kospi200 = historical_index_naver(index_cd,'2017-1-1','2017-12-31')
 index_cd = 'SPI&SPX'
 historical_prices = dict()
 sp500 = index_global(historical_prices, index_cd, '2017-1-1','2017-12-31')
-#129p
 
-tmp = { 'S&P500' : sp500, 'KOSPI200':kospi200 }
+tmp = {'S&P500' : sp500, 'KOSPI200': kospi200}
 tmp
 
-import pandas as pd
+import pandas  as pd
 
 df = pd.DataFrame(tmp)
 df
-
-#130p
-
