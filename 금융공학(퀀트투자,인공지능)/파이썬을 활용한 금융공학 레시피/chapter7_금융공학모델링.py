@@ -390,3 +390,14 @@ import pandas  as pd
 
 df = pd.DataFrame(tmp)
 df
+
+#130page
+
+
+df = df.fillna(method='ffill')
+if df.isnull().values.any():
+    df = df.fillna(method='bfill')
+df
+
+
+#132page
