@@ -406,4 +406,11 @@ index_cd = 'SPI@SPX'
 historical_prices= dict()
 sp500 = index_gloval(hsitorical_prices, index_cd, '2008-1-1', '2017-12-31')
 
+tmp = {'S&P500':sp500, 'KOSPI200': kospi200}
+
+df = pd.DataFrame(tmp)
+
+df - df.fillna(method='ffill')
+if df.isnull().values.any():
+    df.df.fillna(method='bfill')
 #133page
