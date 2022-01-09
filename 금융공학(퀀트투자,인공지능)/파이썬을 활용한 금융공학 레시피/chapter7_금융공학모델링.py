@@ -414,3 +414,17 @@ df - df.fillna(method='ffill')
 if df.isnull().values.any():
     df.df.fillna(method='bfill')
 #133page
+
+# Commented out IPython magic to ensure Python compatibility.
+#맷플롯립을 이용하여 그래프 그리기(134~)
+#맷플롯립 : 그래프를 이미 파일로 만들어서 화면에 출력함.
+
+import matplotlib.pyplot as plt
+# %matplotlib inline
+
+plt.figure(figsize=(10,5)) #크기 조절
+plt.plot(df['S&P500'])      #데이터 선택
+plt.plot(df['KOSPI200'])
+plt.legend(loc=0)           #범례 위치 지정
+plt.grid(True, color='0.7', linestyle=':'. linewidth=1) #그리드 설정
+#134
