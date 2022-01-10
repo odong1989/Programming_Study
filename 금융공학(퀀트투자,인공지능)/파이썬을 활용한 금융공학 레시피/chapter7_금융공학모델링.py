@@ -428,3 +428,12 @@ plt.plot(df['KOSPI200'])
 plt.legend(loc=0)           #범례 위치 지정
 plt.grid(True, color='0.7', linestyle=':'. linewidth=1) #그리드 설정
 #134
+
+
+plt.figure(figsize=(10,5)) #크기 조절
+plt.plot(df['S&P500']) #데이터 선택
+plt.plot(df['KOSPI'])
+plt.legend(loc=0)
+plt.grid(True, color='0.7', linestyle=':'. linewidth=1) #그리드 설정
+
+#135
