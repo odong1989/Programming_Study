@@ -435,5 +435,8 @@ plt.plot(df['S&P500']) #데이터 선택
 plt.plot(df['KOSPI'])
 plt.legend(loc=0)
 plt.grid(True, color='0.7', linestyle=':'. linewidth=1) #그리드 설정
-
 #135
+
+
+df.iloc[0]                  #인덱스(위치)로 지정
+df.loc[dt.date(2008,1,2)]   #값(날짜)으로 지정
