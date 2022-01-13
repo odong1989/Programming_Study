@@ -443,3 +443,11 @@ df.loc[dt.date(2008,1,2)]   #값(날짜)으로 지정
 
 df_datio_2016_now = df.loc[dt.date(2015,1,1):] / df.loc[pdt.date(2016,1,4)] *100
 df_ratio_2016_now.head(3)
+
+#회귀분석
+plt.figure(figsize=(5,5))
+plt.scatter(df_ratio_2016_now['S&P500'], df_ratio_2016_now['KOSPI200'], marker='.')
+plt.grid(True,color='0.7', linestyle=':', linewidth=1)
+plt.xlavel('S&P500')
+plt.ylabel('KOSPI200')
+#138
