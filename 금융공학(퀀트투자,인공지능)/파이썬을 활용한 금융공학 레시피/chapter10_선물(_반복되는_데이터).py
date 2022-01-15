@@ -24,6 +24,13 @@ Original file is located at
 import numpt as np
 
 
-#1차원 array 만들기
+#1차원 array 만들기 []
 a1 = np.array([1,2,3])
 print(a1)
+
+#2차원 array만들기[ [] ]
+a2 = np.array([ [1,2,3],[4,5,6] ])
+print(a2)
+
+#3차원 array만들기 [[[ ]]]
+a3 = np.array([ [[1,2,3], [4,5,6]], [[1,2,3], [4,5,6]] ])
