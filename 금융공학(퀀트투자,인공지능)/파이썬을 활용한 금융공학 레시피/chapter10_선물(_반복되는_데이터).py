@@ -34,3 +34,14 @@ print(a2)
 
 #3차원 array만들기 [[[ ]]]
 a3 = np.array([ [[1,2,3], [4,5,6]], [[1,2,3], [4,5,6]] ])
+
+
+#배열 모양 변경하기
+c = np.arrange(15)
+print(c)
+
+c = c.reshape(3,5)
+print(c)
+
+d = np.arrange(0,100, 5)
+print(d)
