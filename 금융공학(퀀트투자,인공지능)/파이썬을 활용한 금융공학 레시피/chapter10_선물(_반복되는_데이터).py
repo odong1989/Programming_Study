@@ -45,3 +45,6 @@ print(c)
 
 d = np.arrange(0,100, 5)
 print(d)
+
+d = d.reshape(2,2,5)
+d
